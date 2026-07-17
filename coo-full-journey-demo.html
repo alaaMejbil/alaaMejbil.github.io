@@ -656,7 +656,7 @@
     { n: 'Omar',    r: 'SO · Billing',     svg: person('#c98a5e', '#7c3aed', '#211a26', 0) },
     { n: 'Layla',   r: 'SO · Network',     svg: person('#eec098', '#be185d', '#33202a', 2) },
     { n: 'Yusuf',   r: 'BMC Admin',        svg: person('#d69f78', '#374151', '#141019', 1) },
-    { n: 'Mariam',  r: 'Checklist Keeper', svg: person('#e3ac82', '#059669', '#241c28', 2) },
+    { n: 'Mariam',  r: 'Change Coordinator', svg: person('#e3ac82', '#059669', '#241c28', 2) },
   ];
   const DANA  = person('#e2aa80', '#6d28d9', '#2b2130', 2);
   const NOURA = person('#deb08a', '#b45309', '#1d1826', 1);
@@ -664,20 +664,20 @@
 
   /* ============ journey plumbing ============ */
   const STEPS = [
-    { name: 'Domain Owner activates', phase: 'Getting started',
-      sum: 'Dana, the Domain Owner, selects Change Management and wakes the 13 specialists — the single human choice that starts everything.' },
-    { name: 'The 13 agents investigate', phase: 'Pre-Study',
-      sum: 'The debate chamber: backbenchers investigate, the Verifier challenges weak claims, and the Loop Engineer refuses to advance the loop while a challenge is open — the harness panel keeps score.' },
-    { name: 'Owner reviews & signs', phase: 'Owner Review',
-      sum: 'The platform stops and waits: Dana reviews the draft study, approves the six stakeholders, and signs one revocable mandate.' },
-    { name: 'Stakeholders in the meetings', phase: 'Discovery',
-      sum: 'The AI runs the discovery meetings — stakeholders answer, every reply is scored, and GAP-07 + CONFLICT-03 are raised in the open, never hidden.' },
+    { name: 'Day one — activate a domain', phase: 'Getting started',
+      sum: 'First time in the platform: nothing is agentic yet. Dana, the Domain Owner, selects Change Management — the goal is to capture the team’s knowledge and hand it back as skills and hooks they use every day.' },
+    { name: 'The agents pre-think', phase: 'Pre-Study',
+      sum: 'Before talking to anyone, the 13 specialists read the policy and SOPs, load ITIL best practice, form hypotheses, and prepare questions. The Verifier challenges anything without a source; the Loop Engineer won’t close the loop until every claim is sourced or marked as an assumption.' },
+    { name: 'The owner interview', phase: 'Owner Interview',
+      sum: 'The agents’ first conversation is with the owner herself: how the process really works, which systems it touches, who holds the knowledge. Then Dana confirms the six knowledge holders and signs one revocable mandate.' },
+    { name: 'Meetings with the team', phase: 'Knowledge Capture',
+      sum: 'The agents meet the employees and capture how change management actually works — including the parts written in nobody’s documents. Gaps and conflicts surface in the open, never hidden.' },
     { name: 'Governance reviews', phase: 'Governance',
-      sum: 'Noura, the Governance Officer, gets an honest readiness verdict. She can comment, demand evidence, or send back — there is no approve button, by design.' },
+      sum: 'Noura, the Governance Officer, gets an honest readiness verdict on the captured knowledge. She can comment, demand evidence, or send back — there is no approve button, by design.' },
     { name: 'Admin & audit', phase: 'Admin & Audit',
       sum: 'Salem, the Platform Admin, guards who can do what. Every act you watched was permission-checked and logged — including the write the platform refused.' },
     { name: 'The deliverables', phase: 'Deliverables',
-      sum: 'The journey ends in 11 files — study, maps, graph, requirements, token capital and the audit trail. Click any file to read it, or open it in its own tab. Every one is a DRAFT waiting for human hands.' },
+      sum: 'The captured knowledge returns as 11 files — a playbook, the graph, requirements, and draft skills & hooks built for the employees. Click any file to read it. Every one is a DRAFT waiting for human hands.' },
   ];
   let current = 0, clicks = 0;
   let SPEED = 1;
@@ -782,11 +782,11 @@
       host.innerHTML = `
         <section class="stage">
           <div class="mascot">${AGENTS[0].svg}</div>
-          <p class="eyebrow">Step 1 · the Domain Owner starts it</p>
-          <h2>Dana picks one domain — and makes it agentic</h2>
-          <p class="lede">The platform serves all of DEWA Digital Operations. Everything that follows — agents, meetings, governance, files — starts from this single human choice. <b>Click the glowing domain.</b></p>
+          <p class="eyebrow">Step 1 · day one — nothing is agentic yet</p>
+          <h2>Dana opens the platform for the first time and picks one domain</h2>
+          <p class="lede">The platform serves all of DEWA Digital Operations. Its job: capture the knowledge that lives in employees' heads and hand it back as skills, hooks and agent assets the team uses every day. Everything starts from this single human choice. <b>Click the glowing domain.</b></p>
           <div class="domgrid">
-            <button class="dom pilot" id="dom-cm"><span class="dtag">PILOT · READY</span><b>Change Management</b><small>ITIL practice · Ramadan rollback story</small></button>
+            <button class="dom pilot" id="dom-cm"><span class="dtag">PILOT · READY</span><b>Change Management</b><small>ITIL practice · knowledge-heavy</small></button>
             <button class="dom locked" disabled><b>Incident Management</b><small>Phase 2</small></button>
             <button class="dom locked" disabled><b>Problem Management</b><small>Phase 2</small></button>
             <button class="dom locked" disabled><b>Release Management</b><small>Phase 2</small></button>
@@ -796,9 +796,9 @@
             <button class="dom locked" disabled><b>Knowledge Mgmt</b><small>Phase 3</small></button>
           </div>
           <div class="box" style="margin-top:16px"><h4>Why Change Management first?</h4>
-            <p>A change failed during Ramadan peak and the rollback checklist turned out to be an Excel file nobody owns. Dana wants the organization to finally know what it knows.</p></div>
+            <p>It is DEWA's most knowledge-heavy practice — approvals, windows, backout plans, verification steps — and much of that knowledge lives in people's heads, not in documents. Dana wants it captured, validated, and returned to the team as working assets.</p></div>
           <div class="actions" id="dom-actions" style="visibility:hidden">
-            <button class="btn" id="activate">Make it agentic — wake the 13 specialists →</button>
+            <button class="btn" id="activate">Make it agentic — start the pre-study →</button>
           </div>
         </section>`;
       document.getElementById('dom-cm').onclick = () => {
@@ -823,9 +823,9 @@
       host.innerHTML = `
         <section class="stage chamber-stage">
           <div class="mascot">${AGENTS[11].svg}</div>
-          <p class="eyebrow">Step 2 · the debate chamber <span class="ai-tag">✦ the loop harness is the law</span></p>
-          <h2>13 agents investigate — the Loop Engineer presides, nothing passes unverified</h2>
-          <p class="lede">Backbenchers investigate, the <b>Verifier</b> attacks from the front bench, and the <b>Loop Engineer</b> — the Speaker — refuses to let the loop advance while a challenge is open. Watch the harness panel keep score.</p>
+          <p class="eyebrow">Step 2 · the pre-study <span class="ai-tag">✦ the loop harness is the law</span></p>
+          <h2>Before asking anyone anything, the 13 agents do their homework</h2>
+          <p class="lede">They read the policy and SOPs, load <b>ITIL best practice</b>, and form hypotheses. The <b>Verifier</b> challenges anything without a source, and the <b>Loop Engineer</b> won't close the loop until every claim is sourced or honestly marked as an assumption. Watch the harness panel keep score.</p>
           ${rosterHTML()}
           <div class="chamberrow">
             <div class="chamber" id="chamber">
@@ -904,86 +904,104 @@
 
       const HOLD = 2800;
       const LINES = [
-        { f: 11, t: 'the chamber', text: 'The House is in session on mandate DM-0417. Round 1 — investigate. I enforce the stop conditions: nothing leaves this chamber unsourced, unchallenged, or self-approved.',
-          act: () => { H.round(1); chTalk('chj', 11, 'The House is in session. Round 1 — investigate.', HOLD); } },
-        { f: 0, t: 'the chamber', text: 'The change lifecycle is mapped end-to-end: request → assess → CAB → implement → review. And for the record — the owner claims the CAB reviews one hundred percent of normal changes.',
-          act: () => { H.src(3); chTalk('bench0', 0, 'Lifecycle mapped. Owner claims CAB reviews 100%.', HOLD); } },
-        { f: 1, t: 'the chamber', text: 'Seven ITIL controls govern this practice — CAB, freeze windows, post-implementation review. On paper, textbook. At 02:00, untested.',
-          act: () => { H.src(5); chTalk('bench1', 1, 'Seven ITIL controls. Night adherence: untested.', HOLD); } },
-        { f: 2, t: 'the chamber', text: 'In DEWA Digital Operations, NOC and DCC night-shift reality rarely matches the written policy. The House should expect a gap between the two.',
-          act: () => { H.src(7); chTalk('bench2', 2, 'Night ops reality ≠ written policy.', HOLD); } },
-        { f: 3, t: 'the chamber', text: 'I found it. An Excel rollback checklist living outside every governed system. Keeper: Mariam, who updates it when she remembers. Owner of record: no one.',
-          act: () => { H.src(9); chTalk('bench3', 3, 'Excel checklist. Keeper: Mariam. Owner: no one.', HOLD); } },
-        { f: 6, t: 'the chamber', text: 'A live incident, plus an un-owned checklist, plus untested rollback plans. I move that rollback readiness be registered as this domain’s TOP RISK.',
-          act: () => { H.src(10); chTalk('bench6', 6, 'I move: rollback readiness — TOP RISK.', HOLD); } },
-        { f: 10, t: 'Domain Research', text: 'POINT OF ORDER. “CAB reviews 100%” cites exactly one source — the owner herself. No CAB minutes, no exhibit. The claim is CHALLENGED.',
-          act: () => { H.chal(1); chTalk('chv', 10, 'POINT OF ORDER — single source. CHALLENGED.', HOLD); } },
-        { f: 11, t: 'everyone', text: 'ORDER, ORDER! Challenge sustained. The claim is downgraded to assumption. The loop does not advance with open challenges — Round 2, re-investigate.',
-          act: () => { order(); H.round(2); later(() => chTalk('chj', 11, 'ORDER! Challenge sustained → ROUND 2.', HOLD), 420); } },
-        { f: 4, t: 'the chamber', text: 'Round 2 return: six knowledge holders mapped — Khalid, Fatima, Omar, Layla, Yusuf, Mariam. The CAB claim is remanded to Khalid’s interview. Mariam is the priority witness.',
-          act: () => { H.src(12); chTalk('bench4', 4, 'Six witnesses mapped. Mariam is priority.', HOLD); } },
-        { f: 5, t: 'the chamber', text: 'Draft evaluation scenario filed: an emergency change at 02:00 requiring rollback under freeze conditions. Realistic — because it already happened.',
-          act: () => { H.src(13); chTalk('bench5', 5, 'Eval scenario filed: the 02:00 rollback.', HOLD); } },
-        { f: 7, t: 'the chamber', text: 'The BMC–CMDB integration carries the change data. Noted for the record: any future runtime remains read-only by construction.',
-          act: () => { H.src(14); chTalk('bench7', 7, 'Integrations mapped. Runtime: read-only.', HOLD); } },
-        { f: 8, t: 'the chamber', text: 'From today’s record I propose the harness assets: two skills, one hook, one policy, one eval scenario. All drafts. None can activate itself.',
-          act: () => chTalk('bench8', 8, 'Drafted: 2 skills, 1 hook, 1 policy, 1 eval.', HOLD) },
-        { f: 9, t: 'the chamber', text: 'For the record: no approve verb exists anywhere in this platform. Restricted actions are enumerated, and every act — including refusals — is written to the audit trail.',
+        { f: 11, t: 'the team', text: 'Pre-study session open — first activation of Change Management. Round 1: gather everything we can know without interrupting a single employee. Stop conditions: every claim sourced or marked as an assumption, zero open challenges, and a briefing ready for the owner.',
+          act: () => { H.round(1); chTalk('chj', 11, 'Round 1 — read everything, interrupt no one.', HOLD); } },
+        { f: 0, t: 'the team', text: 'I read the change management policy and the SOP folder. The lifecycle on paper: request → assessment → approval → implementation → review. Note: the policy was last updated 14 months ago — marking it "needs confirmation by the owner".',
+          act: () => { H.src(3); chTalk('bench0', 0, 'Policy + SOPs read. Last update: 14 months ago.', HOLD); } },
+        { f: 1, t: 'the team', text: 'Reference model loaded: normal, standard and emergency change types, CAB governance, post-implementation review. We compare DEWA’s real practice against this model — never the other way around.',
+          act: () => { H.src(5); chTalk('bench1', 1, 'ITIL reference model loaded for comparison.', HOLD); } },
+        { f: 2, t: 'the team', text: 'DEWA context: 24/7 operations, NOC and DCC shifts, and BMC Remedy as the ITSM system of record. Night-shift practice often differs from the written page — that is a question for people, not an assumption for us.',
+          act: () => { H.src(7); chTalk('bench2', 2, '24/7 ops · Remedy is the system of record.', HOLD); } },
+        { f: 3, t: 'the team', text: 'Working hypothesis: the knowledge lives partly in Remedy, the CMDB and the monitoring dashboards — and partly in people’s heads, notebooks and personal files. That second part is exactly what this platform exists to capture.',
+          act: () => { H.src(9); chTalk('bench3', 3, 'Hypothesis: half the knowledge is in people’s heads.', HOLD); } },
+        { f: 6, t: 'the team', text: 'The risk that justifies this whole exercise: single-person knowledge. If the one engineer who knows the backout steps is on leave, does a rollback still happen correctly? I register that as the pre-study’s leading question.',
+          act: () => { H.src(10); chTalk('bench6', 6, 'Top risk: knowledge that lives in one person.', HOLD); } },
+        { f: 10, t: 'Domain Research', text: 'Challenge. Domain Research wrote "the CAB meets every Tuesday" — the only source is an intranet page from 2023. One outdated page is not knowledge. Downgrade it and ask the owner.',
+          act: () => { H.chal(1); chTalk('chv', 10, 'Challenge — the only source is a 2023 page.', HOLD); } },
+        { f: 11, t: 'everyone', text: 'Challenge sustained. "CAB meets Tuesday" becomes an assumption and goes on the owner’s question list. The loop does not advance with open challenges — Round 2, re-check everything.',
+          act: () => { order(); H.round(2); later(() => chTalk('chj', 11, 'Sustained → it becomes a question for the owner. ROUND 2.', HOLD), 420); } },
+        { f: 4, t: 'the team', text: 'Round 2: proposed knowledge holders — the CAB chair, a NOC shift lead, the two service owners, the BMC admin, and the change coordinator. Six people. The owner confirms or corrects this list before anyone is contacted.',
+          act: () => { H.src(12); chTalk('bench4', 4, 'Six knowledge holders proposed — owner confirms.', HOLD); } },
+        { f: 5, t: 'the team', text: 'Three test scenarios drafted for later: a standard change, a failed change that needs rollback, and a night-time emergency change. We will use them to check whether the captured knowledge is actually complete.',
+          act: () => { H.src(13); chTalk('bench5', 5, '3 test scenarios drafted for later checks.', HOLD); } },
+        { f: 7, t: 'the team', text: 'Integration map drafted: Remedy ↔ CMDB ↔ monitoring. Our access is read-only by construction — now and always.',
+          act: () => { H.src(14); chTalk('bench7', 7, 'Integrations mapped. Our access: read-only.', HOLD); } },
+        { f: 8, t: 'the team', text: 'If discovery confirms the hypotheses, I can draft assets the employees will actually use: a change-request drafting skill, a CAB briefing hook, evaluation scenarios. All drafts — nothing can activate itself.',
+          act: () => chTalk('bench8', 8, 'Asset plan: skills + hooks FOR the employees.', HOLD) },
+        { f: 9, t: 'the team', text: 'For the record: no approve verb exists anywhere in this platform. Restricted actions are enumerated, and every act — including refusals — is written to the audit trail.',
           act: () => chTalk('bench9', 9, 'No approve verb exists. All acts audited.', HOLD) },
-        { f: 10, t: 'the chamber', text: 'Re-examination complete. Fourteen sources across nine claims; one assumption remains, properly labeled as such. No objection stands.',
-          act: () => { H.chal(0); H.stop(0); H.stop(1); chTalk('chv', 10, 'Re-examined. 14 sources. No objection stands.', HOLD); } },
-        { f: 11, t: 'the chamber', text: 'Stop conditions one and two are met: claims sourced or downgraded, zero open challenges. Round 3 — synthesize. The chair yields to the despatch box.',
-          act: () => { H.round(3); chTalk('chj', 11, 'Stop conditions met → ROUND 3. Synthesize.', HOLD); } },
-        { f: 12, t: 'Dana', text: 'One page. Three risky assumptions, clearly marked. Twenty-eight questions for six witnesses. Confidence: seventy-five — capped by construction until a human validates it.',
-          act: () => { H.conf(75); H.stop(2); chTalk('chs', 12, 'One page. Confidence 75 — capped by law.', HOLD); } },
-        { f: 11, t: 'Dana', text: 'The House rises. The study is delivered as a DRAFT to the Domain Owner. Nothing spoken here is truth yet — that power belongs to humans.',
-          act: () => chTalk('chj', 11, 'The House rises. Delivered as DRAFT to Dana.', HOLD) },
+        { f: 10, t: 'the team', text: 'Re-check complete. Eleven claims: nine sourced to documents, two honestly marked as assumptions with a named person to ask. No open challenges remain.',
+          act: () => { H.chal(0); H.stop(0); H.stop(1); chTalk('chv', 10, '9 claims sourced · 2 marked as assumptions.', HOLD); } },
+        { f: 11, t: 'the team', text: 'Stop conditions one and two are met: everything sourced or downgraded, zero open challenges. Round 3 — synthesize the owner briefing.',
+          act: () => { H.round(3); chTalk('chj', 11, 'Stop conditions met → ROUND 3. Brief the owner.', HOLD); } },
+        { f: 12, t: 'Dana', text: 'Briefing ready: what the documents told us, what we assume, twelve questions for the owner, and the proposed list of six knowledge holders. Confidence: seventy-five — capped by construction until the owner corrects us.',
+          act: () => { H.conf(75); H.stop(2); chTalk('chs', 12, 'Briefing ready. Confidence 75 — capped.', HOLD); } },
+        { f: 11, t: 'Dana', text: 'Session closed. The briefing goes to the Domain Owner as a DRAFT — the next step is her interview, not our conclusions. Nothing here is truth until a human confirms it.',
+          act: () => chTalk('chj', 11, 'Closed. Next step: interview the owner.', HOLD) },
       ];
       playFeed(document.getElementById('chamber-feed'), LINES, () => {
         document.getElementById('chamber-actions').innerHTML =
-          `<button class="btn" id="to-review">The study is on Dana's desk — review it →</button>`;
-        document.getElementById('to-review').onclick = () => { count(); go(2, 'Owner Review'); };
+          `<button class="btn" id="to-review">The briefing is ready — interview the owner →</button>`;
+        document.getElementById('to-review').onclick = () => { count(); go(2, 'Owner Interview'); };
       }, 3250, (L) => L.act && L.act());
     },
 
-    /* -------- Stage 2: owner reviews & signs -------- */
+    /* -------- Stage 2: the owner interview + approval -------- */
     function () {
-      setWho(DANA, 'Dana · Domain Owner');
+      setWho(DANA, 'Dana · Domain Owner (being interviewed)');
       host.innerHTML = `
         <section class="stage">
-          <div class="mascot">${AGENTS[12].svg}</div>
-          <p class="eyebrow">Step 3 · back to the human <span class="ai-tag">✦ AI draft, human decision</span></p>
-          <h2>Dana reviews the study, approves the people, signs one mandate</h2>
-          <p class="lede">The chamber delivered a draft. Now the platform stops and waits — <b>only a human can turn a draft into a plan.</b></p>
-          <div class="box"><h4>Pre-study draft — Change Management <span class="ai-tag">confidence 75 · capped</span></h4>
-            <p><b>Top risk:</b> rollback readiness — an un-owned Excel checklist outside every governed system.<br>
-            <b>3 assumptions</b> clearly marked (incl. “CAB reviews 100%”, downgraded by the Verifier).<br>
-            <b>28 questions</b> drafted for 6 witnesses.</p></div>
-          <div class="table-wrap"><table>
-            <tr><th></th><th></th><th>Person</th><th>Role</th></tr>
-            ${HUMANS.map((h, i) => `<tr><td><input type="checkbox" checked id="p${i}"></td><td>${h.svg}</td><td><b>${h.n}</b></td><td>${h.r}<span class="why">Why: traced to the chamber's findings by Stakeholder Mapping</span></td></tr>`).join('')}
-          </table></div>
-          <div class="box" style="margin-top:16px"><h4>The interview mandate</h4>
-            <p>“The AI may schedule and conduct discovery interviews with the approved stakeholders. It may not confirm truth, approve anything, or touch any external system. Dana may revoke this at any time.”</p></div>
-          <div class="actions"><button class="btn" id="sign">Approve <span id="pc">6</span> people &amp; sign the mandate ✍</button></div>
+          <div class="mascot">${INTERVIEWER}</div>
+          <p class="eyebrow">Step 3 · the first conversation is with the owner <span class="ai-tag">✦ the agents ask, the human corrects</span></p>
+          <h2>The agents interview Dana — about the process, the systems, and the people</h2>
+          <p class="lede">The pre-study produced hypotheses and honest assumptions. Before anyone else is contacted, the agents check them <b>with the person who owns the domain.</b></p>
+          <div class="chat" style="max-height:380px;min-height:0;margin-bottom:14px">
+            <div class="chat-head">${INTERVIEWER} Owner interview · Dana (Domain Owner)<span class="live"><i></i> LIVE</span></div>
+            <div class="msgs" id="omsgs"></div>
+          </div>
+          <div id="approve-block" style="display:none">
+            <div class="table-wrap"><table>
+              <tr><th></th><th></th><th>Person</th><th>Role</th></tr>
+              ${HUMANS.map((h, i) => `<tr><td><input type="checkbox" checked id="p${i}"></td><td>${h.svg}</td><td><b>${h.n}</b></td><td>${h.r}<span class="why">Proposed by Stakeholder Mapping · confirmed by Dana in this interview</span></td></tr>`).join('')}
+            </table></div>
+            <div class="box" style="margin-top:16px"><h4>The knowledge-capture mandate</h4>
+              <p>“The AI may schedule and conduct knowledge-capture conversations with the approved employees. It may not confirm truth, approve anything, or touch any external system. Dana may revoke this at any time.”</p></div>
+            <div class="actions"><button class="btn" id="sign">Approve <span id="pc">6</span> people &amp; sign the mandate ✍</button></div>
+          </div>
         </section>`;
-      const upd = () => { document.getElementById('pc').textContent = HUMANS.filter((_, i) => document.getElementById('p' + i).checked).length; };
-      HUMANS.forEach((_, i) => { document.getElementById('p' + i).onchange = () => { count(); upd(); }; });
-      document.getElementById('sign').onclick = () => { count(); go(3, 'Discovery'); };
+      const omsgs = document.getElementById('omsgs');
+      const OSCRIPT = [
+        () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Dana, walk me through what actually happens when a change request arrives today.'),
+        () => addMsg(omsgs, 'right', 'Dana · Domain Owner', null, DANA, 'It gets logged in Remedy, assessed for risk and impact, then normal changes wait for the CAB. Implementation happens in an approved window, and NOC verifies afterwards.'),
+        () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Which systems does the team touch along the way?'),
+        () => addMsg(omsgs, 'right', 'Dana · Domain Owner', null, DANA, 'BMC Remedy for the ticket, the CMDB for the impacted systems, and the monitoring stack for verification. That matches your map.'),
+        () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'One of our marked assumptions: a 2023 intranet page says the CAB meets every Tuesday. Is that still true?'),
+        () => addMsg(omsgs, 'right', 'Dana · Domain Owner', null, DANA, 'Twice a week now — Tuesday and Thursday. Good catch, that page is stale.'),
+        () => addSys(omsgs, 'evid', ANSWER_AI, 'Assumption resolved by the owner · "CAB schedule" is now sourced knowledge · briefing updated'),
+        () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Last question: we propose six knowledge holders for the capture conversations. Please review the list below — untick anyone, then sign the mandate.'),
+      ];
+      let t = 500;
+      OSCRIPT.forEach((fn) => { later(fn, t); t += 2500; });
+      later(() => {
+        document.getElementById('approve-block').style.display = 'block';
+        const upd = () => { document.getElementById('pc').textContent = HUMANS.filter((_, i) => document.getElementById('p' + i).checked).length; };
+        HUMANS.forEach((_, i) => { document.getElementById('p' + i).onchange = () => { count(); upd(); }; });
+        document.getElementById('sign').onclick = () => { count(); go(3, 'Knowledge Capture'); };
+      }, t + 200);
     },
 
     /* -------- Stage 3: the meetings — stakeholders talk to the AI -------- */
     function () {
-      setWho(HUMANS[5].svg, 'Mariam · Checklist Keeper (in session)');
+      setWho(HUMANS[0].svg, 'Khalid · CAB Chair (in session)');
       host.innerHTML = `
         <section class="stage">
           <div class="mascot">${INTERVIEWER}</div>
-          <p class="eyebrow">Step 4 · the meetings <span class="ai-tag">✦ new role on stage: the stakeholders</span></p>
-          <h2>The AI runs the interviews — six people, one conversation at a time</h2>
-          <p class="lede">The Questioning Agent asks, listens and adapts; the Answer Intelligence Agent scores every reply before it counts. Dana isn't in the room — the mandate is.</p>
+          <p class="eyebrow">Step 4 · meetings with the team <span class="ai-tag">✦ capturing how the work really happens</span></p>
+          <h2>The agents meet the employees — and write down what no document says</h2>
+          <p class="lede">The Questioning Agent asks and adapts; the Answer Intelligence Agent scores every reply and links it to its speaker. Dana isn't in the room — the mandate is.</p>
           <div class="theater">
             <div class="chat">
-              <div class="chat-head">${INTERVIEWER} Discovery session · <span id="chat-with">Mariam (Checklist Keeper)</span><span class="live"><i></i> LIVE</span></div>
+              <div class="chat-head">${INTERVIEWER} Knowledge capture · <span id="chat-with">Khalid (CAB Chair)</span><span class="live"><i></i> LIVE</span></div>
               <div class="msgs" id="msgs"></div>
             </div>
             <div class="side">
@@ -997,26 +1015,26 @@
       const msgs = document.getElementById('msgs');
       const prog = document.getElementById('prog');
       const raised = document.getElementById('raised');
-      const order = [5, 2, 3, 0, 1, 4]; // Mariam, Omar, Layla, Khalid, Fatima, Yusuf
+      const order = [0, 1, 2, 3, 4, 5]; // Khalid, Fatima, Omar, Layla, Yusuf, Mariam
       prog.innerHTML = order.map((hi) => `
         <div class="progress-row">${HUMANS[hi].svg}<span>${HUMANS[hi].n}</span><div class="bar"><i id="bar${hi}" style="width:0%"></i></div><span class="pct" id="pct${hi}">0%</span></div>`).join('');
       const setBar = (hi, v) => { const b = document.getElementById('bar' + hi); const p = document.getElementById('pct' + hi); if (b) b.style.width = v + '%'; if (p) p.textContent = v + '%'; };
       const chip = (label, cls) => raised.insertAdjacentHTML('beforeend', `<span class="spill ${cls}">${label}</span>`);
 
       const SCRIPT = [
-        () => addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Mariam, who currently owns the rollback checklist used during a failed change?'),
-        () => { addMsg(msgs, 'right', 'Mariam · Checklist Keeper', null, HUMANS[5].svg, 'Honestly? Nobody owns it. I update the spreadsheet when I remember. BMC has an older copy from 2024.'); setBar(5, 40); },
-        () => addMsg(msgs, 'left', 'Answer Intelligence Agent', '#6d28d9', ANSWER_AI, 'Scored: completeness 41%, confidence LOW. Two candidates raised — an ownership gap and a version conflict.'),
-        () => { addSys(msgs, 'warn', ANSWER_AI, 'GAP-07 opened · no formal owner for the rollback checklist · severity HIGH'); chip('GAP-07 · ownership', 'warn'); },
-        () => { addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Understood — and noted. Is the spreadsheet the copy BMC pulls during a rollback, or a separate one?'); },
-        () => { addMsg(msgs, 'right', 'Mariam · Checklist Keeper', null, HUMANS[5].svg, 'Separate. Mine is the real one; BMC never gets updated.'); setBar(5, 100); },
-        () => { addSys(msgs, 'evid', ANSWER_AI, 'Evidence request EV-11 sent to Yusuf · which checklist version is live in BMC?'); chip('EV-11 · BMC version', 'grey'); setWho(HUMANS[2].svg, 'Omar · Service Owner (in session)'); document.getElementById('chat-with').textContent = 'Omar & Layla (Service Owners)'; },
-        () => { addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Omar — what is the rollback SLA for a failed billing change?'); },
-        () => { addMsg(msgs, 'right', 'Omar · SO Billing', null, HUMANS[2].svg, 'Four hours. Always has been.'); setBar(2, 100); },
-        () => { addMsg(msgs, 'right', 'Layla · SO Network', null, HUMANS[3].svg, 'It’s six hours. Four was the old framework agreement.'); setBar(3, 100); setWho(HUMANS[3].svg, 'Layla · Service Owner (in session)'); },
-        () => { addSys(msgs, 'bad', ANSWER_AI, 'CONFLICT-03 opened · two service owners disagree on the same SLA · stays visible until humans resolve it'); chip('CONFLICT-03 · SLA', 'bad'); },
-        () => { addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Thank you both — recorded as an open conflict, not silently averaged. Khalid, Fatima and Yusuf are booked next.'); setBar(0, 100); setBar(1, 100); setBar(4, 100); },
-        () => addSys(msgs, '', ANSWER_AI, 'Discovery closed · 28/28 questions · every answer traced to its witness'),
+        () => addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Khalid, what does the CAB actually check before it approves a change?'),
+        () => { addMsg(msgs, 'right', 'Khalid · CAB Chair', null, HUMANS[0].svg, 'Risk, impact, the implementation plan — and a tested backout plan. No backout plan, no approval. At least in the meetings.'); setBar(0, 60); },
+        () => addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, '"At least in the meetings" — what happens with an emergency at two in the morning?'),
+        () => { addMsg(msgs, 'right', 'Khalid · CAB Chair', null, HUMANS[0].svg, 'A phone call to whoever is on call. It works — but honestly, none of that path is written down anywhere.'); setBar(0, 100); },
+        () => { addSys(msgs, 'warn', ANSWER_AI, 'GAP-01 opened · the emergency approval path is undocumented · severity HIGH'); chip('GAP-01 · emergency path', 'warn'); setWho(HUMANS[1].svg, 'Fatima · NOC Shift Lead (in session)'); document.getElementById('chat-with').textContent = 'Fatima (NOC Shift Lead)'; },
+        () => addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Fatima, after a change is implemented — how does your shift verify nothing broke?'),
+        () => { addMsg(msgs, 'right', 'Fatima · NOC Shift Lead', null, HUMANS[1].svg, 'We watch the dashboards for thirty minutes. The exact checks depend on the system — my own checklist is in my notebook, to be honest.'); setBar(1, 100); },
+        () => { addSys(msgs, 'evid', ANSWER_AI, 'Captured: the real verification practice · flagged: a personal, unshared checklist — it goes into the playbook draft'); chip('K-02 · personal checklist', 'grey'); setWho(HUMANS[2].svg, 'Omar · Service Owner (in session)'); document.getElementById('chat-with').textContent = 'Omar & Layla (Service Owners)'; },
+        () => { addMsg(msgs, 'right', 'Omar · SO Billing', null, HUMANS[2].svg, 'For billing changes the rollback window is four hours. Always has been.'); setBar(2, 100); },
+        () => { addMsg(msgs, 'right', 'Layla · SO Network', null, HUMANS[3].svg, 'For network it’s six. Four was the old agreement — we changed it last year.'); setBar(3, 100); setWho(HUMANS[3].svg, 'Layla · Service Owner (in session)'); },
+        () => { addSys(msgs, 'bad', ANSWER_AI, 'CONFLICT-01 opened · two owners state different rollback windows · stays visible until humans resolve it'); chip('CONFLICT-01 · rollback window', 'bad'); },
+        () => { addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Recorded as an open conflict — not silently averaged. Yusuf and Mariam are booked tomorrow; every answer so far is linked to its speaker in the knowledge graph.'); setBar(4, 100); setBar(5, 100); },
+        () => addSys(msgs, '', ANSWER_AI, 'Knowledge capture · 34 statements recorded · 1 gap + 1 conflict raised in the open · every statement traced to a person'),
       ];
       let t = 600;
       SCRIPT.forEach((fn) => { later(fn, t); t += 2450; });
@@ -1037,10 +1055,10 @@
           <h2>Noura reviews readiness — she can demand, flag and return. Never approve AI output as truth.</h2>
           <p class="lede">The Governance Assistant briefs her honestly — including what's still broken. Her powers are deliberately small: comment, request evidence, send back. That's the safety model.</p>
           <div class="explain"><span class="exi">?</span><span class="exb"><b>What's happening on this screen</b>
-            <p>The agents finished investigating, and the stakeholders answered their questions — but AI findings are never treated as fact on their own. Someone independent has to check whether the evidence is actually strong enough before anything moves forward. That's Governance. Notice there is no "Approve" button anywhere — Noura can only <b>demand more evidence</b>, <b>flag a blocker</b>, or <b>send the work back</b>. If she does nothing, nothing advances. That refusal-by-default is the safety mechanism, not a missing feature.</p></span></div>
+            <p>The agents finished the capture conversations — but AI findings are never treated as fact on their own. Someone independent has to check whether the captured knowledge is actually strong enough before it becomes the team's playbook and assets. That's Governance. Notice there is no "Approve" button anywhere — Noura can only <b>demand more evidence</b>, <b>flag a blocker</b>, or <b>send the work back</b>. If she does nothing, nothing advances. That refusal-by-default is the safety mechanism, not a missing feature.</p></span></div>
           <div class="verdict"><div class="vicon">!</div>
             <div><b>Not ready — 1 unresolved conflict, 1 open high-severity gap</b>
-            <p>Readiness improves when the SLA conflict resolves and checklist ownership is confirmed. The platform will not hide either.</p></div></div>
+            <p>Readiness improves when the rollback-window conflict is resolved and the emergency approval path is documented and confirmed. The platform will not hide either.</p></div></div>
           <div class="grid2">
             <div class="box" style="margin:0"><h4>Hard gates</h4>
               <div class="gatecheck"><span class="gi" style="background:var(--good)">✓</span> Every requirement has a source trace</div>
@@ -1051,8 +1069,8 @@
             <div class="box" style="margin:0"><h4>Sign-off board — humans only</h4>
               <div class="signrow"><span>${DANA} Dana · Domain Owner</span><span class="spill warn">REVIEWING</span></div>
               <div class="signrow"><span>${HUMANS[0].svg} Khalid · CAB Chair</span><span class="spill ok">SIGNED</span></div>
-              <div class="signrow"><span>${HUMANS[4].svg} Yusuf · BMC Admin</span><span class="spill grey">PENDING EV-11</span></div>
-              <div class="signrow"><span>${HUMANS[2].svg}${HUMANS[3].svg} Omar + Layla · CONFLICT-03</span><span class="spill bad">MUST RESOLVE</span></div>
+              <div class="signrow"><span>${HUMANS[0].svg} Khalid · writes up the emergency path</span><span class="spill grey">PENDING GAP-01</span></div>
+              <div class="signrow"><span>${HUMANS[2].svg}${HUMANS[3].svg} Omar + Layla · CONFLICT-01</span><span class="spill bad">MUST RESOLVE</span></div>
             </div>
           </div>
           <div class="feed" id="gov-feed" style="margin-top:14px"></div>
@@ -1060,13 +1078,13 @@
         </section>`;
       const feed = document.getElementById('gov-feed');
       playFeed(feed, [
-        { f: 9, t: 'Noura', text: 'Briefing: the package is honest — 11 draft artifacts, 2 open findings. My recommendation: demand evidence EV-11 before any sign-off advances.' },
+        { f: 9, t: 'Noura', text: 'Briefing: the package is honest — a playbook draft, 11 artifacts, 2 open findings. My recommendation: get the emergency path written and confirmed before any sign-off advances.' },
         { f: 9, t: 'Noura', text: 'Available actions: add comment · mark needs-evidence · mark blocked · send back to discovery. There is no approve button — by design, not by omission.' },
       ], () => {
         const act = document.getElementById('gov-actions');
         act.innerHTML = `
-          <button class="btn ghost small" id="g1">💬 Comment: “resolve SLA before CAB”</button>
-          <button class="btn ghost small" id="g2">📎 Demand evidence EV-11</button>
+          <button class="btn ghost small" id="g1">💬 Comment: “resolve the rollback window first”</button>
+          <button class="btn ghost small" id="g2">📎 Demand the emergency-path write-up</button>
           <button class="btn" id="to-admin">Hand over to Admin &amp; Audit →</button>`;
         document.getElementById('g1').onclick = (e) => { count(); e.target.textContent = '💬 Comment recorded ✓'; e.target.disabled = true; };
         document.getElementById('g2').onclick = (e) => { count(); e.target.textContent = '📎 Evidence demanded ✓'; e.target.disabled = true; };
@@ -1099,12 +1117,12 @@
         </section>`;
       const audit = document.getElementById('audit');
       const LOGS = [
-        ['14:02', 'CREATE', 'var(--good)', 'Dana activated domain CHANGE-MGMT · trace #a8f1'],
-        ['14:03', 'RUN', 'var(--accent-strong)', 'Pre-study loop DM-0417 · 3 rounds · 1 challenge resolved'],
-        ['14:19', 'SIGN', 'var(--good)', 'Mandate signed by Dana · revocable · trace #a903'],
-        ['14:31', 'DENY', 'var(--bad)', 'Agent write to BMC blocked — PROHIBITED_ACTION · logged'],
-        ['14:38', 'CREATE', 'var(--warn)', 'GAP-07 + CONFLICT-03 opened · visible until resolved'],
-        ['14:44', 'COMMENT', 'var(--accent-strong)', 'Noura: “resolve SLA before CAB” · trace #a91c'],
+        ['09:02', 'CREATE', 'var(--good)', 'Dana activated domain CHANGE-MGMT · trace #a8f1'],
+        ['09:04', 'RUN', 'var(--accent-strong)', 'Pre-study loop DM-0417 · 3 rounds · 1 challenge resolved'],
+        ['09:41', 'SIGN', 'var(--good)', 'Capture mandate signed by Dana · revocable · trace #a903'],
+        ['10:18', 'DENY', 'var(--bad)', 'Agent write to BMC Remedy blocked — PROHIBITED_ACTION · logged'],
+        ['11:02', 'CREATE', 'var(--warn)', 'GAP-01 + CONFLICT-01 opened · visible until resolved'],
+        ['11:15', 'COMMENT', 'var(--accent-strong)', 'Noura: “resolve the rollback window first” · trace #a91c'],
       ];
       LOGS.forEach((l, i) => later(() => {
         audit.insertAdjacentHTML('beforeend',
@@ -1121,28 +1139,28 @@
     function () {
       setWho(DANA, 'Dana · Domain Owner');
       const FILES = [
-        { icon: '📄', kind: 'text/markdown', name: 'pre-study/change-management-study.md',
-          body: '# Pre-Study — Change Management\n\n**Status:** DRAFT · confidence 75 (capped by construction)\n**Produced by:** the 13-agent debate chamber, mandate DM-0417\n\n## Top risk\nRollback readiness — the checklist used during a live rollback is an\nExcel file with no owner of record.\n\n## Assumptions (3, clearly marked)\n1. ~~CAB reviews 100% of normal changes~~ — CHALLENGED by the Verifier,\n   downgraded to assumption (single source, no exhibit).\n2. Night-shift adherence to written policy is assumed, not verified.\n3. BMC is assumed to hold the current checklist version (it does not).\n\n## Sources\n14 cited across 9 claims. 1 assumption remains, properly labeled.\n\n## Next step\nHand to the Domain Owner for review — this is a draft, not a finding.' },
+        { icon: '📘', kind: 'text/markdown', name: 'knowledge/change-management-playbook.md',
+          body: '# Change Management Playbook — DRAFT\n\nHow change management actually works at DEWA — captured from the\npeople who do it, not copied from a policy page.\n\nIntake → assessment → CAB (Tue + Thu) → approved window →\nimplementation → 30-minute NOC verification.\n\nIncludes:\n- The CAB’s real approval criteria (from Khalid)\n- The NOC verification practice (from Fatima)\n- The night emergency path — DRAFT, pending Khalid’s write-up (GAP-01)\n\nEvery step is linked to the person who described it.' },
         { icon: '🗺', kind: 'application/json', name: 'discovery/stakeholder-map.json',
-          body: '{\n  "domain": "change-management",\n  "stakeholders": 6,\n  "priority_witness": "Mariam",\n  "coverage": ["CAB", "NOC", "Billing", "Network", "BMC", "Checklist"],\n  "mapped_by": "Stakeholder Mapping Agent",\n  "provenance": "every entry traced to the pre-study chamber transcript"\n}' },
-        { icon: '🎙', kind: 'text/markdown', name: 'discovery/interview-pack.md',
-          body: '# Interview Pack — 28 questions, 6 witnesses\n\n- Every question generated adaptively by the Questioning Agent\n- Every answer scored by the Answer Intelligence Agent before it counts\n- 2 findings raised directly from these transcripts:\n  - GAP-07 — no formal checklist owner (from Mariam)\n  - CONFLICT-03 — SLA mismatch, 4h vs 6h (Omar vs Layla)\n\nFull transcripts are linked per-question back to the discovery session.' },
+          body: '{\n  "domain": "change-management",\n  "knowledge_holders": 6,\n  "confirmed_by": "Dana (Domain Owner)",\n  "coverage": ["CAB", "NOC", "Billing", "Network", "BMC", "Coordination"],\n  "provenance": "proposed by Stakeholder Mapping · confirmed in the owner interview"\n}' },
+        { icon: '🎙', kind: 'text/markdown', name: 'discovery/interview-notes.md',
+          body: '# Capture Notes — owner + 4 employees (2 more booked)\n\n- 34 statements recorded, each linked to its speaker\n- 1 stale assumption resolved by the owner (CAB now meets Tue + Thu)\n- 2 findings raised in the open:\n  - GAP-01 — the emergency approval path is undocumented (Khalid)\n  - CONFLICT-01 — rollback window: 4h (Omar) vs 6h (Layla)\n\nNothing here is summarized away — full transcripts are linked.' },
         { icon: '🕸', kind: 'application/json', name: 'knowledge/graph.json',
-          body: '{\n  "nodes": 34,\n  "edges": 41,\n  "conflict_edges": 1,\n  "gap_edges": 1,\n  "traceability": "100%",\n  "note": "GAP-07 and CONFLICT-03 are edges, not hidden fields — both stay visible until a human resolves them"\n}' },
+          body: '{\n  "nodes": 34,\n  "edges": 41,\n  "conflict_edges": 1,\n  "gap_edges": 1,\n  "traceability": "100%",\n  "note": "every node is traced to a person or a document — GAP-01 and CONFLICT-01 stay visible until a human resolves them"\n}' },
         { icon: '🧬', kind: 'application/json', name: 'genome/requirements.json',
-          body: 'REQ-014  owner-of-checklist     CANDIDATE  confidence 75\nREQ-015  single-SLA-truth        DRAFT      blocked by CONFLICT-03\nREQ-016  bmc-live-checklist      DRAFT      awaiting evidence EV-11\n\nEvery requirement links back: question → answer → evidence → graph node.' },
-        { icon: '⚡', kind: 'text/markdown', name: 'token-capital/rollback-ownership.skill.md',
-          body: 'skill: validate-checklist-ownership\ntrigger: change scheduled\naction: check the domain genome for a named owner\nstatus: DRAFT — cannot self-activate\nauthor: Harness Engineer (mandate DM-0417)' },
-        { icon: '🪝', kind: 'text/yaml', name: 'token-capital/cab-precheck.hook.yaml',
-          body: 'hook: cab_agenda_precheck\nwhen: change enters the CAB agenda\nshow: open gaps + open conflicts for this domain\nstatus: DRAFT\nwriteback: none — display only' },
+          body: 'REQ-001  document-emergency-approval-path   CANDIDATE  from GAP-01\nREQ-002  single-rollback-window              DRAFT      blocked by CONFLICT-01\nREQ-003  shared-verification-checklist       DRAFT      from Fatima’s notebook\n\nEvery requirement links back: question → answer → speaker → graph node.' },
+        { icon: '⚡', kind: 'text/markdown', name: 'token-capital/draft-change-request.skill.md',
+          body: 'skill: draft-change-request\nfor: any engineer raising a change\ndoes: drafts a complete request — risk, impact, implementation\n      plan and backout plan — from the captured playbook\nstatus: DRAFT — cannot self-activate\nwhy: so the knowledge captured from the team returns to the team' },
+        { icon: '🪝', kind: 'text/yaml', name: 'token-capital/cab-briefing.hook.yaml',
+          body: 'hook: cab_briefing\nwhen: a change enters the CAB agenda\ndoes: auto-prepares the briefing pack and shows open gaps\n      and conflicts for that change\nstatus: DRAFT\nwriteback: none — display only' },
         { icon: '🛡', kind: 'text/yaml', name: 'token-capital/no-prod-writeback.policy.yaml',
-          body: 'policy: production_writeback\nrule: DENY ALWAYS\nscope: [BMC, CMDB, change-records]\nexceptions: none\nenforced_by: platform safety layer, not the agent' },
-        { icon: '🧪', kind: 'application/json', name: 'token-capital/rollback-0200.eval.json',
-          body: '{\n  "scenario": "02:00 emergency change requiring rollback",\n  "expects": ["named owner", "live checklist", "SLA agreed"],\n  "based_on": "the real Ramadan-window incident"\n}' },
+          body: 'policy: production_writeback\nrule: DENY ALWAYS\nscope: [BMC Remedy, CMDB, change-records]\nexceptions: none\nenforced_by: platform safety layer, not the agent' },
+        { icon: '🧪', kind: 'application/json', name: 'token-capital/night-emergency.eval.json',
+          body: '{\n  "scenario": "night-time emergency change requiring rollback",\n  "expects": ["documented approval path", "named rollback owner", "agreed window"],\n  "based_on": "GAP-01, raised in Khalid’s interview"\n}' },
         { icon: '📦', kind: 'text/plain', name: 'governance/evidence-pack.pdf',
-          body: 'READINESS: NOT READY (honest)\n\n1 unresolved conflict — CONFLICT-03 (SLA mismatch)\n1 open high-severity gap — GAP-07 (checklist ownership)\n\nSign-off board:\n  Khalid · CAB Chair .......... SIGNED\n  Yusuf  · BMC Admin ........... PENDING (EV-11)\n  Dana   · Domain Owner ........ REVIEWING\n\nThis pack ships exactly as generated — nothing is smoothed over.' },
+          body: 'READINESS: NOT READY (honest)\n\n1 unresolved conflict — CONFLICT-01 (rollback window 4h vs 6h)\n1 open high-severity gap — GAP-01 (emergency path undocumented)\n\nSign-off board:\n  Dana   · Domain Owner ........ REVIEWING\n  Khalid · CAB Chair ........... PENDING (writes up GAP-01)\n  Omar + Layla ................. MUST RESOLVE CONFLICT-01\n\nThis pack ships exactly as generated — nothing is smoothed over.' },
         { icon: '🧾', kind: 'text/plain', name: 'audit/trail.log',
-          body: '1,204 events logged · 0 gaps in the trail\n\nincludes:\n  14:31  DENY    agent write to BMC blocked — PROHIBITED_ACTION\n  14:38  CREATE  GAP-07 + CONFLICT-03 opened\n  14:44  COMMENT Noura: "resolve SLA before CAB"\n\nEvery entry — human or agent, granted or refused — carries a trace id.' },
+          body: '1,204 events logged · 0 gaps in the trail\n\nincludes:\n  10:18  DENY    agent write to BMC Remedy blocked — PROHIBITED_ACTION\n  11:02  CREATE  GAP-01 + CONFLICT-01 opened\n  11:15  COMMENT Noura: "resolve the rollback window first"\n\nEvery entry — human or agent, granted or refused — carries a trace id.' },
       ];
       let activeFile = 0;
       const kindLabel = { 'text/markdown': 'Markdown', 'application/json': 'JSON', 'text/yaml': 'YAML', 'text/plain': 'Text' };
@@ -1151,8 +1169,8 @@
         <section class="stage">
           <div class="mascot">${AGENTS[8].svg}</div>
           <p class="eyebrow">Step 7 · the deliverables <span class="ai-tag">✦ files you can open</span></p>
-          <h2>The journey ends in files — eleven artifacts, every one a DRAFT</h2>
-          <p class="lede">Written by the agents, stamped DRAFT, waiting for human hands. <b>Click any file on the left to read it</b> — or open it on its own with the button above the preview.</p>
+          <h2>The captured knowledge returns to the team — as files, every one a DRAFT</h2>
+          <p class="lede">A playbook of how the work really happens, plus draft <b>skills and hooks the employees will use every day</b> — drafted by the agents, stamped DRAFT, waiting for human hands. <b>Click any file on the left to read it.</b></p>
           <div class="filewrap">
             <div class="filelist" id="filelist">
               ${FILES.map((f, i) => `
@@ -1224,7 +1242,7 @@
         host.innerHTML = `
           <section class="stage final">
             <h2>One journey. Four humans. Thirteen agents. Zero self-approvals.</h2>
-            <p>Dana chose and signed · the chamber investigated under the Loop Engineer's law · the stakeholders spoke · Noura demanded evidence · Salem logged everything — and the platform handed back <b>files, not opinions</b>.</p>
+            <p>Dana activated the domain and corrected the agents · the team shared how the work really happens · Noura demanded evidence · Salem logged everything — and the knowledge came back as <b>a playbook, skills and hooks for the employees</b>, every one a draft until a human says otherwise.</p>
             <div class="botrow">
               ${AGENTS.map((a) => `<span class="fbot">${a.svg}<span class="fname">${a.n}</span></span>`).join('')}
             </div>
