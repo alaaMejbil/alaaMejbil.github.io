@@ -1,0 +1,1242 @@
+<title>DEWA Agentic Knowledge OS — All Roles, One Journey</title>
+<style>
+  :root {
+    --bg: #f5f4fc;
+    --surface: #ffffff;
+    --surface-soft: #f0eefb;
+    --border: #e4e1f2;
+    --border-strong: #cbc5e8;
+    --text: #1f1d33;
+    --text-2: #5a5678;
+    --text-3: #8f8bab;
+    --accent: #7c3aed;
+    --accent-2: #22d3ee;
+    --accent-soft: #ede9fd;
+    --accent-strong: #6d28d9;
+    --good: #0e8a6a;
+    --good-soft: #e0f5ec;
+    --warn: #b45309;
+    --warn-soft: #fdf1e0;
+    --bad: #cf3550;
+    --bad-soft: #fdeaee;
+    --shadow: 0 14px 40px rgba(70, 45, 160, 0.13);
+    --shadow-lg: 0 24px 70px rgba(70, 45, 160, 0.20);
+    --glow: 0 0 30px rgba(124, 58, 237, 0.35);
+    --r: 18px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14121e; --surface: #1e1b2d; --surface-soft: #252138; --border: #37324c;
+      --border-strong: #4b4468; --text: #edeaf7; --text-2: #b4aecf; --text-3: #837da1;
+      --accent: #a78bfa; --accent-soft: #322a4d; --accent-strong: #c4b0fc;
+      --good: #3ecfa3; --good-soft: #1d3a32; --warn: #e8a04c; --warn-soft: #3c2e1a;
+      --bad: #f47c92; --bad-soft: #43222b;
+      --shadow: 0 14px 40px rgba(0,0,0,0.45); --shadow-lg: 0 24px 70px rgba(0,0,0,0.55);
+      --glow: 0 0 30px rgba(167, 139, 250, 0.4);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f4fc; --surface: #ffffff; --surface-soft: #f0eefb; --border: #e4e1f2;
+    --border-strong: #cbc5e8; --text: #1f1d33; --text-2: #5a5678; --text-3: #8f8bab;
+    --accent: #7c3aed; --accent-soft: #ede9fd; --accent-strong: #6d28d9;
+    --good: #0e8a6a; --good-soft: #e0f5ec; --warn: #b45309; --warn-soft: #fdf1e0;
+    --bad: #cf3550; --bad-soft: #fdeaee;
+    --shadow: 0 14px 40px rgba(70,45,160,0.13); --shadow-lg: 0 24px 70px rgba(70,45,160,0.20);
+    --glow: 0 0 30px rgba(124,58,237,0.35);
+  }
+  :root[data-theme="dark"] {
+    --bg: #14121e; --surface: #1e1b2d; --surface-soft: #252138; --border: #37324c;
+    --border-strong: #4b4468; --text: #edeaf7; --text-2: #b4aecf; --text-3: #837da1;
+    --accent: #a78bfa; --accent-soft: #322a4d; --accent-strong: #c4b0fc;
+    --good: #3ecfa3; --good-soft: #1d3a32; --warn: #e8a04c; --warn-soft: #3c2e1a;
+    --bad: #f47c92; --bad-soft: #43222b;
+    --shadow: 0 14px 40px rgba(0,0,0,0.45); --shadow-lg: 0 24px 70px rgba(0,0,0,0.55);
+    --glow: 0 0 30px rgba(167,139,250,0.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden; position: relative; min-height: 100vh;
+  }
+  body::before, body::after {
+    content: ""; position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; pointer-events: none;
+  }
+  body::before { width: 520px; height: 520px; top: -180px; right: -140px; background: rgba(124, 58, 237, 0.14); }
+  body::after { width: 480px; height: 480px; bottom: -200px; left: -160px; background: rgba(34, 211, 238, 0.12); }
+
+  button { font: inherit; cursor: pointer; }
+
+  .demo-banner {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 8px 16px; font-size: 12.5px; letter-spacing: 0.06em;
+    background: var(--accent-soft); color: var(--accent-strong);
+    border-bottom: 1px solid var(--border); text-transform: uppercase; font-weight: 700;
+  }
+  .demo-banner .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity: 0.3; } }
+
+  header.top {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 24px clamp(16px, 5vw, 56px) 4px;
+  }
+  header.top h1 { margin: 0; font-size: 27px; letter-spacing: -0.02em; }
+  header.top .pill {
+    font-size: 12.5px; font-weight: 700; padding: 4px 14px; border-radius: 99px;
+    background: var(--good-soft); color: var(--good);
+  }
+  header.top .who { margin-inline-start: auto; color: var(--text-3); font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  header.top .who svg { width: 30px; height: 30px; }
+
+  .layout {
+    display: block; padding: 16px clamp(16px, 3vw, 48px) 70px;
+  }
+
+  /* ================= horizontal journey stepper ================= */
+  .topnav {
+    display: flex; gap: 6px; overflow-x: auto; align-items: center;
+    padding: 10px clamp(16px, 3vw, 48px) 4px;
+  }
+  .topnav::-webkit-scrollbar { height: 4px; }
+  .tstep {
+    flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
+    padding: 7px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 750;
+    color: var(--text-3); border: 1.5px solid transparent; background: transparent; white-space: nowrap;
+  }
+  .tstep .n {
+    width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 10.5px; font-weight: 800; background: var(--surface);
+    border: 2px solid var(--border-strong); color: var(--text-3);
+  }
+  .tstep:hover { color: var(--accent-strong); }
+  .tstep.done { color: var(--text-2); }
+  .tstep.done .n { background: var(--good); border-color: var(--good); color: #fff; }
+  .tstep.current { background: var(--accent-soft); color: var(--accent-strong); border-color: var(--border-strong); }
+  .tstep.current .n { background: linear-gradient(135deg, var(--accent), #a855f7); border-color: transparent; color: #fff; box-shadow: var(--glow); }
+
+  .stage-sum {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    padding: 8px clamp(16px, 3vw, 48px) 0; font-size: 14px; color: var(--text-2);
+  }
+  .stage-sum .st-name { font-weight: 800; color: var(--accent-strong); font-size: 14.5px; white-space: nowrap; }
+  .stage-sum .st-text { max-width: 110ch; }
+
+  /* header controls: speed + clicks */
+  .hctrl { display: flex; align-items: center; gap: 10px; }
+  .speed { display: inline-flex; border: 1.5px solid var(--border-strong); border-radius: 999px; overflow: hidden; background: var(--surface); }
+  .speed button { border: 0; background: transparent; color: var(--text-2); padding: 6px 13px; font-size: 12.5px; font-weight: 800; }
+  .speed button.on { background: linear-gradient(135deg, var(--accent), #a855f7); color: #fff; }
+  .clickchip {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 700;
+    color: var(--text-2); background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 999px; padding: 5px 13px 5px 6px;
+  }
+  .clickchip svg { width: 22px; height: 24px; }
+  .clickchip b { color: var(--accent-strong); font-size: 15px; }
+
+  /* ================= stage card ================= */
+  .stage {
+    position: relative;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+    box-shadow: var(--shadow-lg); padding: clamp(22px, 3.5vw, 36px);
+    animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .stage, .demo-banner .dot { animation: none; } .stage { transition: none; }
+  }
+
+  .mascot {
+    position: absolute; top: -26px; inset-inline-end: 26px; width: 84px; height: 92px;
+    filter: drop-shadow(0 14px 20px rgba(70, 45, 160, 0.30));
+    animation: floaty 4.5s ease-in-out infinite;
+  }
+  @keyframes floaty { 50% { transform: translateY(-9px) rotate(-2deg); } }
+  @media (prefers-reduced-motion: reduce) { .mascot { animation: none; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; margin: 0 0 6px;
+    font-size: 12.5px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+  .stage h2 { margin: 0 0 10px; font-size: 23px; letter-spacing: -0.015em; max-width: 52ch; }
+  .lede { margin: 0 0 20px; color: var(--text-2); max-width: 90ch; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 0; border-radius: 12px; padding: 13px 24px;
+    background: linear-gradient(135deg, var(--accent), #a855f7);
+    color: #fff; font-weight: 700; font-size: 15.5px;
+    box-shadow: 0 8px 22px rgba(124, 58, 237, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(124, 58, 237, 0.45); }
+  .btn.ghost { background: transparent; color: var(--text-2); border: 1.5px solid var(--border-strong); box-shadow: none; font-weight: 650; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent-strong); }
+  .btn.small { padding: 9px 15px; font-size: 13.5px; border-radius: 10px; }
+  .btn.good { background: linear-gradient(135deg, var(--good), #14b8a6); box-shadow: 0 8px 22px rgba(14, 138, 106, 0.35); }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+  .ai-tag {
+    display: inline-flex; align-items: center; gap: 6px; padding: 2px 11px;
+    border-radius: 99px; font-size: 12px; font-weight: 700;
+    background: var(--accent-soft); color: var(--accent-strong);
+  }
+
+  .box {
+    border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px;
+    background: var(--surface-soft); margin-bottom: 12px;
+  }
+  .box h4 { margin: 0 0 6px; font-size: 14px; }
+  .box p, .box li { color: var(--text-2); font-size: 14.5px; margin: 0; }
+  .box ul { margin: 6px 0 0; padding-inline-start: 20px; }
+
+  /* ================= domain grid ================= */
+  .domgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin-top: 6px; }
+  @media (max-width: 900px) { .domgrid { grid-template-columns: repeat(2, 1fr); } }
+  .dom {
+    position: relative; text-align: start; background: var(--surface-soft); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 16px 15px; color: var(--text-2);
+  }
+  .dom b { color: var(--text); font-size: 14.5px; display: block; }
+  .dom small { display: block; color: var(--text-3); font-size: 11.5px; margin-top: 4px; }
+  .dom.locked { opacity: 0.5; }
+  .dom.pilot { border-color: var(--accent); box-shadow: var(--glow); animation: breathe 2.4s infinite; cursor: pointer; }
+  @keyframes breathe { 50% { box-shadow: 0 0 46px rgba(124, 58, 237, 0.5); } }
+  .dom.picked { border-color: var(--good); box-shadow: 0 0 30px rgba(14, 138, 106, 0.3); animation: none; }
+  .dom .dtag {
+    position: absolute; top: -10px; inset-inline-end: 10px; font-size: 10px; font-weight: 900; letter-spacing: 0.06em;
+    background: var(--accent-soft); color: var(--accent-strong); border: 1px solid var(--border-strong);
+    border-radius: 99px; padding: 2px 9px;
+  }
+  .dom.picked .dtag { background: var(--good-soft); color: var(--good); border-color: var(--good); }
+
+  /* ================= roster strip ================= */
+  .roster { display: flex; flex-wrap: wrap; gap: 5px 6px; margin: 2px 0 12px; }
+  .rchip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 750; color: var(--text-3);
+    border: 1.5px solid var(--border); border-radius: 99px; padding: 2px 9px 2px 4px;
+    background: var(--surface-soft);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  }
+  .rchip svg { width: 17px; height: 18px; }
+  .rchip .w { font-size: 8px; font-weight: 900; letter-spacing: 0.04em; opacity: 0.75; }
+  .rchip.on {
+    color: var(--accent-strong); border-color: var(--accent); background: var(--accent-soft);
+    box-shadow: var(--glow); transform: translateY(-2px) scale(1.06);
+  }
+  .rchip.spoke { border-color: var(--good); color: var(--text-2); }
+
+  /* ================= DEBATE CHAMBER + harness ================= */
+  .chamberrow { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 14px; align-items: stretch; margin-bottom: 14px; }
+  @media (max-width: 860px) { .chamberrow { grid-template-columns: 1fr; } }
+  .chamber {
+    position: relative; aspect-ratio: 16 / 9.6; max-height: 54vh; border-radius: 14px; overflow: hidden;
+    background: linear-gradient(180deg, #241b3a 0%, #2f2348 55%, #382a54 100%);
+    border: 1px solid var(--border);
+  }
+  /* step 2 (the chamber) fills the viewport instead of sitting in a small boxed card */
+  .stage.chamber-stage { padding-left: clamp(12px, 2vw, 22px); padding-right: clamp(12px, 2vw, 22px); }
+  .stage.chamber-stage .chamberrow { height: 74vh; min-height: 460px; }
+  .stage.chamber-stage .chamber { height: 100%; max-height: none; aspect-ratio: auto; }
+  .stage.chamber-stage .harness { height: 100%; overflow-y: auto; }
+  @media (max-width: 860px) {
+    .stage.chamber-stage .chamberrow { height: auto; }
+    .stage.chamber-stage .chamber { aspect-ratio: 16 / 13; max-height: 60vh; height: auto; }
+  }
+  @media (max-width: 700px) { .chamber { aspect-ratio: 16 / 13; } }
+  .chamber .carc {
+    position: absolute; left: 50%; bottom: -32%; width: 128%; aspect-ratio: 1;
+    border-radius: 50%; transform: translateX(-50%);
+    background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(20,14,36,0.55) 56%, rgba(20,14,36,0.55) 68%, transparent 69%),
+                radial-gradient(circle at 50% 50%, transparent 40%, rgba(20,14,36,0.4) 41%, rgba(20,14,36,0.4) 52%, transparent 53%);
+  }
+  .chamber .chlevel {
+    position: absolute; left: 0; right: 0; padding-inline-start: 2.5%;
+    font-size: clamp(7px, 0.95vw, 11px); font-weight: 900; letter-spacing: 0.1em;
+  }
+  .chamber .speakerchair {
+    position: absolute; left: 50%; top: 6%; transform: translateX(-50%);
+    width: 15%; height: 16%; background: linear-gradient(180deg, #5c4630, #40311f);
+    border-radius: 10px 10px 2px 2px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+  .chamber .speakerchair::before {
+    content: ""; position: absolute; top: -14%; left: 50%; transform: translateX(-50%);
+    width: 70%; height: 20%; background: #6b5436; border-radius: 8px 8px 0 0;
+  }
+  .chamber .despatch {
+    position: absolute; left: 50%; bottom: 6%; transform: translateX(-50%);
+    width: 12%; height: 12%; background: linear-gradient(180deg, #4a3a24, #35291a);
+    border-radius: 6px 6px 0 0; box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+  }
+  .chamber .chorder {
+    position: absolute; top: 26%; left: 50%; transform: translate(-50%, 0) scale(2.2); z-index: 60;
+    font-weight: 900; letter-spacing: 0.08em; font-size: clamp(11px, 2vw, 20px); color: #ffd166;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.7); opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.3, 1.6, 0.4, 1);
+  }
+  .chamber .chorder.flash { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  .chamber .chbot {
+    position: absolute; z-index: 20; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  .chamber .chbot .fig {
+    width: clamp(24px, 3.2vw, 36px); filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .chamber .chbot .fig svg { width: 100%; display: block; }
+  .chamber .chbot.talk .fig { filter: drop-shadow(0 0 16px rgba(167, 139, 250, 0.95)); transform: scale(1.16); }
+  .chamber .chbot .chtag {
+    font-size: clamp(6px, 0.78vw, 9px); font-weight: 800; letter-spacing: 0.03em; color: #dbe0f5;
+    background: rgba(10, 12, 26, 0.78); border: 1px solid rgba(148, 163, 216, 0.4);
+    padding: 1px 7px; border-radius: 99px; white-space: nowrap;
+  }
+  .chamber .chbub {
+    position: absolute; z-index: 55; width: max-content; max-width: 185px; bottom: calc(100% + 10px); left: 50%;
+    transform: translateX(-50%) scale(0.75); background: #fdfbf4; color: #26221a; border-radius: 12px;
+    padding: 6px 11px; font-size: clamp(7.5px, 1vw, 11px); font-weight: 650; line-height: 1.35;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; text-align: start;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .chamber .chbub .bname {
+    display: block; font-size: 0.82em; font-weight: 900; letter-spacing: 0.07em;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .chamber .chbub.show { opacity: 1; transform: translateX(-50%) scale(1); }
+  .chamber .chbub::after {
+    content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    border: 7px solid transparent; border-top-color: #fdfbf4;
+  }
+  .chamber .chbub.edge-l { left: 0; transform: translateX(0) scale(0.75); }
+  .chamber .chbub.edge-l.show { transform: translateX(0) scale(1); }
+  .chamber .chbub.edge-l::after { left: 14%; }
+  .chamber .chbub.edge-r { left: auto; right: 0; transform: translateX(0) scale(0.75); }
+  .chamber .chbub.edge-r.show { transform: translateX(0) scale(1); }
+  .chamber .chbub.edge-r::after { left: 86%; }
+  .chamber .chbub.below { bottom: auto; top: calc(100% + 10px); }
+  .chamber .chbub.below::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: #fdfbf4; }
+
+  .harness {
+    border: 1px solid var(--border); border-radius: 14px;
+    background: var(--surface-soft); padding: 13px 15px; box-shadow: var(--shadow);
+  }
+  .harness h4 {
+    margin: 0 0 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-strong); display: flex; justify-content: space-between; align-items: center; gap: 6px;
+  }
+  .harness h4 .mono { font-size: 10px; color: var(--text-3); font-weight: 800; }
+  .hrow { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; font-size: 12.5px;
+    color: var(--text-2); border-bottom: 1px dashed var(--border); }
+  .hrow .hv { font-weight: 800; color: var(--text); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .hrow .hv.flip { animation: flip 0.5s ease; }
+  @keyframes flip { 0% { transform: translateY(-8px); opacity: 0; color: var(--warn); } 100% { transform: none; opacity: 1; } }
+  .confbar { margin: 10px 0 2px; }
+  .confbar .cb { height: 8px; border-radius: 99px; background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+  .confbar .cb i { display: block; height: 100%; width: 0%; border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width 1.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .confbar .cl { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-3); margin-top: 4px; }
+  .stopc { margin-top: 8px; }
+  .stopc .sc { display: flex; gap: 7px; align-items: center; font-size: 11px; color: var(--text-3); padding: 3px 0; }
+  .stopc .sc .si { width: 14px; height: 14px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 8.5px; background: var(--surface); border: 1px solid var(--border-strong); color: var(--text-3); flex: 0 0 auto; }
+  .stopc .sc.ok { color: var(--text-2); } .stopc .sc.ok .si { background: var(--good); border-color: var(--good); color: #fff; }
+  .stopc .sc.never { color: var(--bad); font-weight: 700; }
+  .stopc .sc.never .si { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+
+  /* ================= comms feed ================= */
+  .feed {
+    border: 1px solid var(--border); border-radius: 14px; background: var(--surface-soft);
+    padding: 12px 14px; max-height: 210px; overflow-y: auto; font-size: 13.5px;
+  }
+  .feed .line {
+    display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start;
+    padding: 7px 4px; border-bottom: 1px dashed var(--border);
+    animation: feedin 0.3s ease both;
+  }
+  .feed .line:last-child { border-bottom: 0; }
+  @keyframes feedin { from { opacity: 0; transform: translateX(-10px); } }
+  .feed .fav { width: 28px; height: 30px; }
+  .feed .fav svg { width: 100%; height: 100%; }
+  .feed .who { font-weight: 750; font-size: 12.5px; }
+  .feed .who .to { color: var(--text-3); font-weight: 650; }
+  .feed .who .wv { font-size: 9px; font-weight: 900; letter-spacing: 0.06em; border-radius: 4px; padding: 0 4px; background: var(--accent-soft); color: var(--accent-strong); vertical-align: 1px; }
+  .feed .txt { color: var(--text-2); }
+  .typing i {
+    display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--text-3); margin-inline-end: 3px; animation: blink 1s infinite;
+  }
+  .typing i:nth-child(2) { animation-delay: 0.2s; }
+  .typing i:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 50% { opacity: 0.2; } }
+
+  /* ================= meeting theater (interviews) ================= */
+  .theater { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 18px; }
+  @media (max-width: 780px) { .theater { grid-template-columns: 1fr; } }
+  .chat {
+    border: 1px solid var(--border); border-radius: 16px; background: var(--surface-soft);
+    display: flex; flex-direction: column; min-height: 400px; max-height: 460px; overflow: hidden;
+  }
+  .chat .chat-head {
+    display: flex; align-items: center; gap: 10px; padding: 11px 15px;
+    border-bottom: 1px solid var(--border); font-size: 13.5px; font-weight: 750;
+    background: var(--surface);
+  }
+  .chat .chat-head svg { width: 30px; height: 32px; }
+  .chat .chat-head .live {
+    margin-inline-start: auto; font-size: 11px; color: var(--bad); font-weight: 800;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .chat .chat-head .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--bad); animation: pulse 1.4s infinite; }
+  .chat .msgs { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 11px; }
+  .mrow { display: flex; gap: 9px; align-items: flex-end; max-width: 88%; animation: bubin 0.3s ease both; }
+  .mrow.right { align-self: flex-end; flex-direction: row-reverse; }
+  .mrow .mav { width: 32px; height: 35px; flex: none; }
+  .mrow .mav svg { width: 100%; height: 100%; }
+  @keyframes bubin { from { opacity: 0; transform: translateY(8px) scale(0.97); } }
+  .bubble { padding: 9px 13px; border-radius: 15px; font-size: 13.8px; }
+  .mrow:not(.right) .bubble { background: var(--accent-soft); border: 1px solid var(--border); border-bottom-left-radius: 4px; color: var(--text); }
+  .mrow.right .bubble { background: var(--surface); border: 1px solid var(--border-strong); border-bottom-right-radius: 4px; color: var(--text-2); }
+  .bubble .tag { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: 0.05em; margin-bottom: 2px; color: var(--accent-strong); }
+  .mrow.right .bubble .tag { color: var(--text-3); }
+  .sysline {
+    align-self: center; display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 650; color: var(--accent-strong);
+    background: var(--surface); border: 1.5px dashed var(--border-strong);
+    padding: 5px 13px; border-radius: 99px; text-align: center; animation: bubin 0.3s ease both;
+  }
+  .sysline svg { width: 20px; height: 22px; }
+  .sysline.warn { color: var(--warn); border-color: var(--warn); }
+  .sysline.bad { color: var(--bad); border-color: var(--bad); }
+  .sysline.evid { color: var(--good); border-color: var(--good); }
+
+  .side { display: flex; flex-direction: column; gap: 11px; }
+  .progress-row { display: grid; grid-template-columns: 30px 76px 1fr 42px; gap: 9px; align-items: center; font-size: 13px; }
+  .progress-row svg { width: 28px; height: 31px; }
+  .bar { height: 8px; border-radius: 99px; background: var(--surface-soft); border: 1px solid var(--border); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent-2), var(--accent)); border-radius: 99px; transition: width 0.5s ease; }
+  .pct { text-align: end; font-variant-numeric: tabular-nums; color: var(--text-2); font-size: 12px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: start; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  th { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-3); }
+  tr:last-child td { border-bottom: 0; }
+  td .why { display: block; font-size: 12.5px; color: var(--text-3); }
+  td svg { width: 30px; height: 33px; vertical-align: middle; }
+
+  /* ================= governance ================= */
+  .verdict {
+    display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 14px;
+    background: var(--warn-soft); border: 1px solid var(--border); margin-bottom: 14px;
+  }
+  .verdict .vicon {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--warn); color: #fff;
+    display: grid; place-items: center; font-weight: 900; font-size: 17px; flex: 0 0 auto;
+  }
+  .verdict b { font-size: 15.5px; }
+  .verdict p { margin: 3px 0 0; font-size: 13px; color: var(--text-2); }
+  .gatecheck { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 13.5px; color: var(--text-2); }
+  .gatecheck .gi { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; color: #fff; flex: 0 0 auto; }
+  .signrow { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 2px; border-bottom: 1px dashed var(--border); font-size: 13.5px; color: var(--text-2); }
+  .signrow:last-child { border-bottom: 0; }
+  .signrow svg { width: 26px; height: 28px; vertical-align: middle; }
+  .spill { font-size: 10.5px; font-weight: 800; letter-spacing: 0.04em; border-radius: 99px; padding: 3px 10px; }
+  .spill.ok { background: var(--good-soft); color: var(--good); }
+  .spill.warn { background: var(--warn-soft); color: var(--warn); }
+  .spill.bad { background: var(--bad-soft); color: var(--bad); }
+  .spill.grey { background: var(--surface-soft); color: var(--text-3); border: 1px solid var(--border); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 780px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* ================= plain-language explainer ================= */
+  .explain {
+    display: flex; gap: 12px; align-items: flex-start; border: 1.5px dashed var(--border-strong);
+    border-radius: 14px; padding: 14px 16px; margin-bottom: 18px; background: var(--surface-soft);
+  }
+  .explain .exi {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-strong);
+    display: grid; place-items: center; font-weight: 800; font-size: 13px; flex: 0 0 auto;
+  }
+  .explain .exb > b {
+    display: block; font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent-strong); margin-bottom: 4px;
+  }
+  .explain .exb p { margin: 0; font-size: 13.5px; color: var(--text-2); line-height: 1.55; }
+  .explain .exb p b { color: var(--text); font-weight: 750; }
+
+  /* ================= audit log ================= */
+  .logline { display: flex; gap: 12px; padding: 8px 2px; border-bottom: 1px dashed var(--border); font-size: 13px; align-items: baseline; animation: feedin 0.3s ease both; }
+  .logline .lt { color: var(--text-3); font-family: ui-monospace, Menlo, monospace; font-size: 11px; flex: 0 0 60px; }
+  .logline .la { flex: 0 0 74px; font-weight: 800; font-size: 11.5px; letter-spacing: 0.04em; }
+  .logline .ld { color: var(--text-2); flex: 1; }
+
+  /* ================= deliverable files — explorable ================= */
+  .filewrap { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; }
+  @media (max-width: 860px) { .filewrap { grid-template-columns: 1fr; } }
+  .filelist {
+    border: 1px solid var(--border); border-radius: 14px; background: var(--surface-soft);
+    overflow-y: auto; max-height: 520px;
+  }
+  .filelist .fitem {
+    display: flex; align-items: center; gap: 9px; width: 100%; text-align: start; border: 0;
+    border-bottom: 1px solid var(--border); background: transparent; padding: 10px 12px; font: inherit;
+  }
+  .filelist .fitem:last-child { border-bottom: 0; }
+  .filelist .fitem .fic {
+    width: 25px; height: 25px; border-radius: 7px; display: grid; place-items: center;
+    font-size: 12px; background: var(--surface); flex: 0 0 auto;
+  }
+  .filelist .fitem .fnm {
+    flex: 1; min-width: 0; font-family: ui-monospace, Menlo, monospace; font-size: 11.5px;
+    color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .filelist .fitem .fdot { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); flex: 0 0 auto; }
+  .filelist .fitem.active { background: var(--accent-soft); }
+  .filelist .fitem.active .fnm { color: var(--accent-strong); font-weight: 700; }
+  .filelist .fitem.seen .fdot { background: var(--good); }
+
+  .filepreview {
+    border: 1px solid var(--border); border-radius: 14px; background: var(--surface);
+    box-shadow: var(--shadow); display: flex; flex-direction: column; min-height: 400px; max-height: 520px;
+  }
+  .filepreview .pv-head {
+    display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    border-bottom: 1px solid var(--border); background: var(--surface-soft); border-radius: 14px 14px 0 0;
+  }
+  .filepreview .pv-head .fic {
+    width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center;
+    font-size: 14px; background: var(--accent-soft); flex: 0 0 auto;
+  }
+  .filepreview .pv-head .pvn {
+    flex: 1; min-width: 0; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; font-weight: 700;
+    color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .filepreview .pv-head .draft { font-size: 9px; font-weight: 900; letter-spacing: 0.1em; color: var(--warn);
+    border: 1.5px solid var(--warn); border-radius: 5px; padding: 2px 7px; flex: 0 0 auto; }
+  .filepreview .pv-body {
+    flex: 1; overflow-y: auto; padding: 16px 18px; font-family: ui-monospace, Menlo, monospace;
+    font-size: 12.5px; line-height: 1.7; color: var(--text-2); white-space: pre-wrap;
+  }
+  .filepreview .pv-body .cur { display: inline-block; width: 7px; height: 12px; background: var(--accent); vertical-align: -2px; animation: blink 0.7s steps(1) infinite; }
+  .filepreview .pv-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 16px; border-top: 1px dashed var(--border); font-size: 11.5px; color: var(--text-3);
+  }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 12px; margin: 18px 0; }
+  .stat { border: 1px solid var(--border); border-radius: 14px; padding: 14px; background: var(--surface-soft); }
+  .stat b { display: block; font-size: 25px; font-variant-numeric: tabular-nums; color: var(--accent-strong); }
+  .stat span { font-size: 13px; color: var(--text-2); }
+
+  .final { text-align: center; padding: 16px 8px; }
+  .final h2 { font-size: 27px; max-width: none; }
+  .final p { color: var(--text-2); max-width: 56ch; margin: 8px auto; }
+  .botrow { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin: 18px 0 6px; }
+  .botrow .fbot { display: flex; flex-direction: column; align-items: center; width: 62px; }
+  .botrow svg { width: 44px; height: 48px; animation: floaty 3.6s ease-in-out infinite; }
+  .botrow .fbot:nth-child(2n) svg { animation-delay: 0.6s; }
+  .botrow .fbot:nth-child(3n) svg { animation-delay: 1.1s; }
+  .botrow .fname { font-size: 8.5px; font-weight: 800; color: var(--text-3); text-align: center; line-height: 1.2; }
+  .footnote { margin-top: 18px; font-size: 13px; color: var(--text-3); }
+</style>
+
+<div class="demo-banner"><span class="dot"></span> Demo — dummy data · simulated AI · one journey through every role on the platform</div>
+
+<header class="top">
+  <h1>DEWA Agentic Knowledge OS</h1>
+  <span class="pill" id="phase-pill">Getting started</span>
+  <span class="hctrl" style="margin-inline-start:auto">
+    <span class="clickchip" id="clickchip"><b id="click-count">0</b> clicks by humans</span>
+    <span class="speed" id="speed" title="Playback speed">
+      <button class="on" data-s="1">1×</button><button data-s="2">2×</button><button data-s="3">3×</button>
+    </span>
+  </span>
+  <span class="who" id="who-slot"></span>
+</header>
+
+<nav class="topnav" id="topnav" aria-label="Journey"></nav>
+<div class="stage-sum" id="stage-sum"></div>
+
+<div class="layout">
+  <main class="stage-wrap" id="stage-host"></main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============ SVG character factory (same as domain-owner demo) ============ */
+  let uid = 0;
+  function robot(c, cl, eyeC, variant) {
+    const id = 'g' + (uid++);
+    const headRx = variant === 1 ? 12 : 26;
+    const ant = variant === 1
+      ? `<line x1="34" y1="22" x2="30" y2="8" stroke="${c}" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="7" r="4.5" fill="${eyeC}"/>
+         <line x1="66" y1="22" x2="70" y2="8" stroke="${c}" stroke-width="4" stroke-linecap="round"/><circle cx="70" cy="7" r="4.5" fill="${eyeC}"/>`
+      : variant === 2
+      ? `<rect x="44" y="6" width="12" height="7" rx="3" fill="${c}"/><ellipse cx="50" cy="6" rx="9" ry="3.5" fill="${eyeC}" opacity="0.9"/>`
+      : `<line x1="50" y1="20" x2="50" y2="7" stroke="${c}" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="6" r="5" fill="${eyeC}"><animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/></circle>`;
+    const eyes = variant === 2
+      ? `<rect x="34" y="46" width="32" height="7" rx="3.5" fill="${eyeC}"><animate attributeName="x" values="34;40;34;30;34" dur="3.4s" repeatCount="indefinite"/><animate attributeName="width" values="32;20;32;22;32" dur="3.4s" repeatCount="indefinite"/></rect>`
+      : `<circle cx="40" cy="49" r="5.6" fill="${eyeC}"><animate attributeName="r" values="5.6;5.6;1.4;5.6" keyTimes="0;0.9;0.95;1" dur="4.6s" repeatCount="indefinite"/></circle>
+         <circle cx="60" cy="49" r="5.6" fill="${eyeC}"><animate attributeName="r" values="5.6;5.6;1.4;5.6" keyTimes="0;0.9;0.95;1" dur="4.6s" repeatCount="indefinite"/></circle>
+         <circle cx="42" cy="47" r="1.7" fill="#fff" opacity="0.95"/><circle cx="62" cy="47" r="1.7" fill="#fff" opacity="0.95"/>`;
+    return `<svg viewBox="0 0 100 112" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="${id}" cx="34%" cy="26%" r="90%">
+          <stop offset="0%" stop-color="${cl}"/><stop offset="100%" stop-color="${c}"/>
+        </radialGradient>
+        <linearGradient id="${id}v" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0f1730"/><stop offset="100%" stop-color="#1d2a52"/>
+        </linearGradient>
+      </defs>
+      ${ant}
+      <rect x="12" y="34" width="8" height="22" rx="4" fill="${c}" opacity="0.85"/>
+      <rect x="80" y="34" width="8" height="22" rx="4" fill="${c}" opacity="0.85"/>
+      <rect x="17" y="20" width="66" height="56" rx="${headRx}" fill="url(#${id})" stroke="rgba(20,10,60,0.18)" stroke-width="1.5"/>
+      <ellipse cx="36" cy="30" rx="16" ry="7" fill="#fff" opacity="0.30"/>
+      <rect x="27" y="40" width="46" height="20" rx="10" fill="url(#${id}v)"/>
+      ${eyes}
+      <rect x="40" y="66" width="20" height="4" rx="2" fill="rgba(15,23,48,0.5)"/>
+      <rect x="42" y="78" width="16" height="9" rx="3" fill="${c}"/>
+      <rect x="26" y="86" width="48" height="20" rx="10" fill="url(#${id})" stroke="rgba(20,10,60,0.15)" stroke-width="1.5"/>
+      <circle cx="50" cy="95" r="4.5" fill="${eyeC}" opacity="0.9"><animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.8s" repeatCount="indefinite"/></circle>
+    </svg>`;
+  }
+  function person(skin, shirt, hair, style) {
+    const id = 'p' + (uid++);
+    const hairShape = style === 1
+      ? `<path d="M28 40 q0 -22 22 -22 q22 0 22 22 l0 14 q-4 -12 -10 -14 q-14 6 -28 2 q-4 4 -6 12 z" fill="${hair}"/>`
+      : style === 2
+      ? `<path d="M27 42 q-2 -26 23 -26 q25 0 23 26 l-1 22 q-3 2 -6 2 l1 -18 q-16 8 -34 0 l1 18 q-3 0 -6 -2 z" fill="${hair}"/>`
+      : `<path d="M29 40 q1 -20 21 -20 q20 0 21 20 q-8 -8 -21 -8 q-13 0 -21 8 z" fill="${hair}"/>`;
+    return `<svg viewBox="0 0 100 112" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs><radialGradient id="${id}" cx="38%" cy="30%" r="85%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="0.45"/><stop offset="100%" stop-color="${shirt}"/>
+      </radialGradient></defs>
+      <circle cx="50" cy="46" r="21" fill="${skin}"/>
+      ${hairShape}
+      <circle cx="43" cy="48" r="2" fill="#2b2438"/><circle cx="57" cy="48" r="2" fill="#2b2438"/>
+      <path d="M45 56 q5 4 10 0" stroke="#2b2438" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M22 108 q2 -26 28 -26 q26 0 28 26 z" fill="url(#${id})"/>
+      <path d="M43 84 l7 8 l7 -8" fill="#fff" opacity="0.85"/>
+    </svg>`;
+  }
+
+  /* ============ THE REAL ROSTER ============
+     The platform's actual 13 pre-study specialists
+     (backend/app/agents/pre_study_knowledge.py, waves per pre_study_specs.py). */
+  const AGENTS = [
+    { n: 'Domain Research',      w: 1, c: '#7c3aed', cl: '#c4b0fc', e: '#7df9ff', v: 0 },
+    { n: 'ITIL Best Practice',   w: 1, c: '#0284c7', cl: '#7dd3fc', e: '#e0f2fe', v: 1 },
+    { n: 'DEWA Context',         w: 1, c: '#059669', cl: '#6ee7b7', e: '#d1fae5', v: 0 },
+    { n: 'Systems Hypothesis',   w: 1, c: '#d97706', cl: '#fcd34d', e: '#7df9ff', v: 1 },
+    { n: 'Stakeholder Mapping',  w: 1, c: '#0891b2', cl: '#67e8f9', e: '#ecfeff', v: 0 },
+    { n: 'Scenario Builder',     w: 1, c: '#c026d3', cl: '#f0abfc', e: '#7df9ff', v: 1 },
+    { n: 'Risk Thinker',         w: 1, c: '#e11d48', cl: '#fda4af', e: '#ffd166', v: 0 },
+    { n: 'Enterprise Architect', w: 1, c: '#7e22ce', cl: '#d8b4fe', e: '#fef08a', v: 1 },
+    { n: 'Harness Engineer',     w: 1, c: '#ea580c', cl: '#fdba74', e: '#7df9ff', v: 0 },
+    { n: 'Governance',           w: 1, c: '#65a30d', cl: '#bef264', e: '#f7fee7', v: 1 },
+    { n: 'Verifier',             w: 2, c: '#dc2626', cl: '#fca5a5', e: '#fee2e2', v: 2 },
+    { n: 'Loop Engineer',        w: 2, c: '#475569', cl: '#cbd5e1', e: '#7df9ff', v: 1 },
+    { n: 'Executive Synthesis',  w: 3, c: '#ca8a04', cl: '#fde047', e: '#fefce8', v: 2 },
+  ];
+  AGENTS.forEach((a) => { a.svg = robot(a.c, a.cl, a.e, a.v); });
+
+  const INTERVIEWER = robot('#0e7490', '#67e8f9', '#ecfeff', 0);
+  const ANSWER_AI = robot('#6d28d9', '#d8b4fe', '#fef08a', 2);
+  const GOV_AI = robot('#65a30d', '#bef264', '#f7fee7', 1);
+
+  const HUMANS = [
+    { n: 'Khalid',  r: 'CAB Chair',        svg: person('#e8b48c', '#334155', '#26202c', 0) },
+    { n: 'Fatima',  r: 'NOC Shift Lead',   svg: person('#d9a074', '#0e7490', '#1a1620', 2) },
+    { n: 'Omar',    r: 'SO · Billing',     svg: person('#c98a5e', '#7c3aed', '#211a26', 0) },
+    { n: 'Layla',   r: 'SO · Network',     svg: person('#eec098', '#be185d', '#33202a', 2) },
+    { n: 'Yusuf',   r: 'BMC Admin',        svg: person('#d69f78', '#374151', '#141019', 1) },
+    { n: 'Mariam',  r: 'Checklist Keeper', svg: person('#e3ac82', '#059669', '#241c28', 2) },
+  ];
+  const DANA  = person('#e2aa80', '#6d28d9', '#2b2130', 2);
+  const NOURA = person('#deb08a', '#b45309', '#1d1826', 1);
+  const SALEM = person('#c88f62', '#0f766e', '#181420', 0);
+
+  /* ============ journey plumbing ============ */
+  const STEPS = [
+    { name: 'Domain Owner activates', phase: 'Getting started',
+      sum: 'Dana, the Domain Owner, selects Change Management and wakes the 13 specialists — the single human choice that starts everything.' },
+    { name: 'The 13 agents investigate', phase: 'Pre-Study',
+      sum: 'The debate chamber: backbenchers investigate, the Verifier challenges weak claims, and the Loop Engineer refuses to advance the loop while a challenge is open — the harness panel keeps score.' },
+    { name: 'Owner reviews & signs', phase: 'Owner Review',
+      sum: 'The platform stops and waits: Dana reviews the draft study, approves the six stakeholders, and signs one revocable mandate.' },
+    { name: 'Stakeholders in the meetings', phase: 'Discovery',
+      sum: 'The AI runs the discovery meetings — stakeholders answer, every reply is scored, and GAP-07 + CONFLICT-03 are raised in the open, never hidden.' },
+    { name: 'Governance reviews', phase: 'Governance',
+      sum: 'Noura, the Governance Officer, gets an honest readiness verdict. She can comment, demand evidence, or send back — there is no approve button, by design.' },
+    { name: 'Admin & audit', phase: 'Admin & Audit',
+      sum: 'Salem, the Platform Admin, guards who can do what. Every act you watched was permission-checked and logged — including the write the platform refused.' },
+    { name: 'The deliverables', phase: 'Deliverables',
+      sum: 'The journey ends in 11 files — study, maps, graph, requirements, token capital and the audit trail. Click any file to read it, or open it in its own tab. Every one is a DRAFT waiting for human hands.' },
+  ];
+  let current = 0, clicks = 0;
+  let SPEED = 1;
+  let timers = [];
+  const host = document.getElementById('stage-host');
+  const topnav = document.getElementById('topnav');
+  const stageSum = document.getElementById('stage-sum');
+  const pill = document.getElementById('phase-pill');
+  const whoSlot = document.getElementById('who-slot');
+
+  function setWho(svg, label) { whoSlot.innerHTML = svg + ' ' + label; }
+  setWho(DANA, 'Dana · Domain Owner');
+
+  document.getElementById('clickchip').insertAdjacentHTML('afterbegin', robot('#7c3aed', '#c4b0fc', '#7df9ff', 0));
+  document.querySelectorAll('#speed button').forEach((b) => {
+    b.onclick = () => {
+      SPEED = +b.dataset.s;
+      document.querySelectorAll('#speed button').forEach((x) => x.classList.toggle('on', x === b));
+    };
+  });
+
+  function drawRail() {
+    topnav.innerHTML = STEPS.map((s, i) => `
+      <button class="tstep ${i < current ? 'done' : i === current ? 'current' : ''}" data-i="${i}">
+        <span class="n">${i < current ? '✓' : i + 1}</span>${s.name}
+      </button>`).join('');
+    topnav.querySelectorAll('.tstep').forEach((el) => {
+      el.onclick = () => { const i = +el.dataset.i; if (i !== current) go(i, STEPS[i].phase); };
+    });
+    const cur = topnav.querySelector('.tstep.current');
+    if (cur) cur.scrollIntoView({ inline: 'center', block: 'nearest', behavior: REDUCED ? 'auto' : 'smooth' });
+    stageSum.innerHTML = `<span class="st-name">Stage ${current + 1} of ${STEPS.length} · ${STEPS[current].name}</span>
+      <span class="st-text">${STEPS[current].sum}</span>`;
+  }
+  function count() { clicks++; const el = document.getElementById('click-count'); if (el) el.textContent = clicks; }
+  function later(fn, ms) { const t = setTimeout(fn, ms / SPEED); timers.push(t); return t; }
+  function cleanup() { timers.forEach(clearTimeout); timers = []; }
+  function go(n, phase) { cleanup(); current = n; pill.textContent = phase || STEPS[n].phase; drawRail(); STAGES[n](); scrollTo({ top: 0, behavior: REDUCED ? 'auto' : 'smooth' }); }
+
+  /* ============ roster strip ============ */
+  function rosterHTML() {
+    return `<div class="roster" id="roster">` + AGENTS.map((a, i) =>
+      `<span class="rchip" id="rc${i}" title="Wave ${a.w}">${a.svg}<span>${a.n}</span><span class="w">W${a.w}</span></span>`
+    ).join('') + `</div>`;
+  }
+  function rosterMark(i) {
+    AGENTS.forEach((_, k) => {
+      const el = document.getElementById('rc' + k);
+      if (!el) return;
+      if (k === i) { el.classList.add('on'); }
+      else if (el.classList.contains('on')) { el.classList.remove('on'); el.classList.add('spoke'); }
+    });
+  }
+
+  /* ============ comms feed (typing effect, avatar + name on every line) ============ */
+  function playFeed(feedEl, lines, onDone, gap, onLine) {
+    let idx = 0;
+    (function next() {
+      if (idx >= lines.length) { if (onDone) onDone(); return; }
+      const L = lines[idx++];
+      const a = AGENTS[L.f];
+      if (onLine) onLine(L);
+      rosterMark(L.f);
+      const row = document.createElement('div');
+      row.className = 'line';
+      row.innerHTML = `<span class="fav">${a.svg}</span>
+        <span><span class="who" style="color:${a.c}">${a.n} <span class="wv">W${a.w}</span>${L.t ? ` <span class="to">→ ${L.t}</span>` : ''}</span><br>
+        <span class="typing"><i></i><i></i><i></i></span></span>`;
+      feedEl.appendChild(row);
+      feedEl.scrollTop = feedEl.scrollHeight;
+      later(() => {
+        row.querySelector('.typing').outerHTML = `<span class="txt">${L.text}</span>`;
+        feedEl.scrollTop = feedEl.scrollHeight;
+        later(next, gap * 0.5);
+      }, gap * 0.5);
+    })();
+  }
+
+  /* ============ chat helpers (meetings) ============ */
+  function addMsg(msgsEl, side, who, tagColorClass, avSvg, text) {
+    const row = document.createElement('div');
+    row.className = 'mrow' + (side === 'right' ? ' right' : '');
+    row.innerHTML = `<span class="mav">${avSvg}</span>
+      <span class="bubble"><span class="tag"${tagColorClass ? ` style="color:${tagColorClass}"` : ''}>${who}</span>${text}</span>`;
+    msgsEl.appendChild(row);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
+  function addSys(msgsEl, cls, svg, text) {
+    const el = document.createElement('div');
+    el.className = 'sysline' + (cls ? ' ' + cls : '');
+    el.innerHTML = `${svg || ''}<span>${text}</span>`;
+    msgsEl.appendChild(el);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
+
+  /* ============ STAGES ============ */
+  const STAGES = [
+
+    /* -------- Stage 0: Domain Owner selects the domain -------- */
+    function () {
+      setWho(DANA, 'Dana · Domain Owner');
+      host.innerHTML = `
+        <section class="stage">
+          <div class="mascot">${AGENTS[0].svg}</div>
+          <p class="eyebrow">Step 1 · the Domain Owner starts it</p>
+          <h2>Dana picks one domain — and makes it agentic</h2>
+          <p class="lede">The platform serves all of DEWA Digital Operations. Everything that follows — agents, meetings, governance, files — starts from this single human choice. <b>Click the glowing domain.</b></p>
+          <div class="domgrid">
+            <button class="dom pilot" id="dom-cm"><span class="dtag">PILOT · READY</span><b>Change Management</b><small>ITIL practice · Ramadan rollback story</small></button>
+            <button class="dom locked" disabled><b>Incident Management</b><small>Phase 2</small></button>
+            <button class="dom locked" disabled><b>Problem Management</b><small>Phase 2</small></button>
+            <button class="dom locked" disabled><b>Release Management</b><small>Phase 2</small></button>
+            <button class="dom locked" disabled><b>Asset Management</b><small>Phase 3</small></button>
+            <button class="dom locked" disabled><b>Capacity Management</b><small>Phase 3</small></button>
+            <button class="dom locked" disabled><b>Service Requests</b><small>Phase 3</small></button>
+            <button class="dom locked" disabled><b>Knowledge Mgmt</b><small>Phase 3</small></button>
+          </div>
+          <div class="box" style="margin-top:16px"><h4>Why Change Management first?</h4>
+            <p>A change failed during Ramadan peak and the rollback checklist turned out to be an Excel file nobody owns. Dana wants the organization to finally know what it knows.</p></div>
+          <div class="actions" id="dom-actions" style="visibility:hidden">
+            <button class="btn" id="activate">Make it agentic — wake the 13 specialists →</button>
+          </div>
+        </section>`;
+      document.getElementById('dom-cm').onclick = () => {
+        count();
+        const d = document.getElementById('dom-cm');
+        if (d.classList.contains('picked')) return;
+        d.classList.add('picked');
+        d.querySelector('.dtag').textContent = 'SELECTED ✓';
+        document.getElementById('dom-actions').style.visibility = 'visible';
+      };
+      document.getElementById('activate') && (document.getElementById('activate').onclick = () => { count(); go(1, 'Pre-Study'); });
+    },
+
+    /* -------- Stage 1: the debate chamber + loop harness -------- */
+    function () {
+      setWho(DANA, 'Dana · Domain Owner (watching)');
+      const BENCH_TAG = ['RESEARCH', 'ITIL', 'DEWA', 'SYSTEMS', 'STAKEHLDR', 'SCENARIO', 'RISK', 'ARCHITECT', 'HARNESS', 'GOVERN'];
+      const BENCH_POS = [
+        [5, 20], [14.5, 15], [24, 12], [33.5, 10], [40.5, 6],
+        [59.5, 6], [66.5, 10], [76, 12], [85.5, 15], [95, 20],
+      ];
+      host.innerHTML = `
+        <section class="stage chamber-stage">
+          <div class="mascot">${AGENTS[11].svg}</div>
+          <p class="eyebrow">Step 2 · the debate chamber <span class="ai-tag">✦ the loop harness is the law</span></p>
+          <h2>13 agents investigate — the Loop Engineer presides, nothing passes unverified</h2>
+          <p class="lede">Backbenchers investigate, the <b>Verifier</b> attacks from the front bench, and the <b>Loop Engineer</b> — the Speaker — refuses to let the loop advance while a challenge is open. Watch the harness panel keep score.</p>
+          ${rosterHTML()}
+          <div class="chamberrow">
+            <div class="chamber" id="chamber">
+              <div class="carc"></div>
+              <div class="chlevel" style="bottom:2.5%; color:rgba(196,176,252,0.55)">WAVE 1 · BACKBENCHERS — INVESTIGATE</div>
+              <div class="chlevel" style="top:46%; color:rgba(252,165,175,0.55)">WAVE 2 · FRONT BENCH — CHALLENGE</div>
+              <div class="chlevel" style="top:6%; color:rgba(253,224,71,0.55)">WAVE 3 · THE CHAIR — SYNTHESIZE</div>
+              <div class="speakerchair"></div>
+              <div class="despatch"></div>
+              <div class="chorder" id="chorder">ORDER, ORDER!</div>
+              ${BENCH_TAG.map((tag, i) => `
+                <div class="chbot" id="bench${i}" style="left:${BENCH_POS[i][0]}%; bottom:${BENCH_POS[i][1]}%">
+                  <div class="chbub ${i <= 1 ? 'edge-l' : i >= 8 ? 'edge-r' : ''}" id="bench${i}-bub"></div>
+                  <span class="fig">${AGENTS[i].svg}</span>
+                  <span class="chtag">${tag}</span>
+                </div>`).join('')}
+              <div class="chbot" id="chv" style="left:50%; bottom:36%">
+                <div class="chbub" id="chv-bub"></div>
+                <span class="fig">${AGENTS[10].svg}</span>
+                <span class="chtag" style="color:#ffc4cb">VERIFIER · FRONT BENCH</span>
+              </div>
+              <div class="chbot" id="chj" style="left:50%; bottom:57%">
+                <div class="chbub below" id="chj-bub"></div>
+                <span class="fig">${AGENTS[11].svg}</span>
+                <span class="chtag" style="color:#e2e8f0">LOOP ENGINEER · SPEAKER</span>
+              </div>
+              <div class="chbot" id="chs" style="left:50%; bottom:18%">
+                <div class="chbub" id="chs-bub"></div>
+                <span class="fig">${AGENTS[12].svg}</span>
+                <span class="chtag" style="color:#fde68a">EXEC SYNTHESIS</span>
+              </div>
+            </div>
+            <div class="harness">
+              <h4>Loop harness <span class="mono">DM-0417</span></h4>
+              <div class="hrow"><span>Round</span><span class="hv" id="hRound">1 / 3</span></div>
+              <div class="hrow"><span>Open challenges</span><span class="hv" id="hChal">0</span></div>
+              <div class="hrow"><span>Sources cited</span><span class="hv" id="hSrc">0</span></div>
+              <div class="confbar">
+                <div class="cb"><i id="hConf"></i></div>
+                <div class="cl"><span>Confidence</span><span id="hConfV">—</span></div>
+              </div>
+              <div class="stopc">
+                <div class="sc" id="sc0"><span class="si">·</span> Every claim sourced or downgraded</div>
+                <div class="sc" id="sc1"><span class="si">·</span> Zero open challenges</div>
+                <div class="sc" id="sc2"><span class="si">·</span> Synthesis compiled &amp; capped</div>
+                <div class="sc never"><span class="si">✕</span> Self-approval — never a stop condition</div>
+              </div>
+            </div>
+          </div>
+          <div class="feed" id="chamber-feed" aria-live="polite"></div>
+          <div class="actions" id="chamber-actions"></div>
+        </section>`;
+
+      const H = {
+        round: (r) => { const el = document.getElementById('hRound'); if (!el) return; el.textContent = r + ' / 3'; el.classList.remove('flip'); void el.offsetWidth; el.classList.add('flip'); },
+        chal: (n) => { const el = document.getElementById('hChal'); if (!el) return; el.textContent = n; el.style.color = n > 0 ? 'var(--bad)' : 'var(--good)'; el.classList.remove('flip'); void el.offsetWidth; el.classList.add('flip'); },
+        src: (n) => { const el = document.getElementById('hSrc'); if (el) el.textContent = n; },
+        conf: (v) => { const b = document.getElementById('hConf'); const t = document.getElementById('hConfV'); if (b) b.style.width = v + '%'; if (t) t.textContent = v + (v === 75 ? ' · CAPPED 🔒' : ''); },
+        stop: (i) => { const el = document.getElementById('sc' + i); if (!el) return; el.classList.add('ok'); el.querySelector('.si').textContent = '✓'; },
+      };
+      function chTalk(id, agentIdx, text, holdMs) {
+        const bot = document.getElementById(id);
+        const bub = document.getElementById(id + '-bub');
+        if (!bot || !bub) return;
+        const a = AGENTS[agentIdx];
+        bub.innerHTML = `<span class="bname" style="color:${a.c}">${a.n}</span>${text}`;
+        bub.classList.add('show'); bot.classList.add('talk');
+        later(() => { bub.classList.remove('show'); bot.classList.remove('talk'); }, holdMs);
+      }
+      function order() {
+        const o = document.getElementById('chorder');
+        if (!o) return;
+        o.classList.add('flash');
+        later(() => o.classList.remove('flash'), 1900);
+      }
+
+      const HOLD = 2800;
+      const LINES = [
+        { f: 11, t: 'the chamber', text: 'The House is in session on mandate DM-0417. Round 1 — investigate. I enforce the stop conditions: nothing leaves this chamber unsourced, unchallenged, or self-approved.',
+          act: () => { H.round(1); chTalk('chj', 11, 'The House is in session. Round 1 — investigate.', HOLD); } },
+        { f: 0, t: 'the chamber', text: 'The change lifecycle is mapped end-to-end: request → assess → CAB → implement → review. And for the record — the owner claims the CAB reviews one hundred percent of normal changes.',
+          act: () => { H.src(3); chTalk('bench0', 0, 'Lifecycle mapped. Owner claims CAB reviews 100%.', HOLD); } },
+        { f: 1, t: 'the chamber', text: 'Seven ITIL controls govern this practice — CAB, freeze windows, post-implementation review. On paper, textbook. At 02:00, untested.',
+          act: () => { H.src(5); chTalk('bench1', 1, 'Seven ITIL controls. Night adherence: untested.', HOLD); } },
+        { f: 2, t: 'the chamber', text: 'In DEWA Digital Operations, NOC and DCC night-shift reality rarely matches the written policy. The House should expect a gap between the two.',
+          act: () => { H.src(7); chTalk('bench2', 2, 'Night ops reality ≠ written policy.', HOLD); } },
+        { f: 3, t: 'the chamber', text: 'I found it. An Excel rollback checklist living outside every governed system. Keeper: Mariam, who updates it when she remembers. Owner of record: no one.',
+          act: () => { H.src(9); chTalk('bench3', 3, 'Excel checklist. Keeper: Mariam. Owner: no one.', HOLD); } },
+        { f: 6, t: 'the chamber', text: 'A live incident, plus an un-owned checklist, plus untested rollback plans. I move that rollback readiness be registered as this domain’s TOP RISK.',
+          act: () => { H.src(10); chTalk('bench6', 6, 'I move: rollback readiness — TOP RISK.', HOLD); } },
+        { f: 10, t: 'Domain Research', text: 'POINT OF ORDER. “CAB reviews 100%” cites exactly one source — the owner herself. No CAB minutes, no exhibit. The claim is CHALLENGED.',
+          act: () => { H.chal(1); chTalk('chv', 10, 'POINT OF ORDER — single source. CHALLENGED.', HOLD); } },
+        { f: 11, t: 'everyone', text: 'ORDER, ORDER! Challenge sustained. The claim is downgraded to assumption. The loop does not advance with open challenges — Round 2, re-investigate.',
+          act: () => { order(); H.round(2); later(() => chTalk('chj', 11, 'ORDER! Challenge sustained → ROUND 2.', HOLD), 420); } },
+        { f: 4, t: 'the chamber', text: 'Round 2 return: six knowledge holders mapped — Khalid, Fatima, Omar, Layla, Yusuf, Mariam. The CAB claim is remanded to Khalid’s interview. Mariam is the priority witness.',
+          act: () => { H.src(12); chTalk('bench4', 4, 'Six witnesses mapped. Mariam is priority.', HOLD); } },
+        { f: 5, t: 'the chamber', text: 'Draft evaluation scenario filed: an emergency change at 02:00 requiring rollback under freeze conditions. Realistic — because it already happened.',
+          act: () => { H.src(13); chTalk('bench5', 5, 'Eval scenario filed: the 02:00 rollback.', HOLD); } },
+        { f: 7, t: 'the chamber', text: 'The BMC–CMDB integration carries the change data. Noted for the record: any future runtime remains read-only by construction.',
+          act: () => { H.src(14); chTalk('bench7', 7, 'Integrations mapped. Runtime: read-only.', HOLD); } },
+        { f: 8, t: 'the chamber', text: 'From today’s record I propose the harness assets: two skills, one hook, one policy, one eval scenario. All drafts. None can activate itself.',
+          act: () => chTalk('bench8', 8, 'Drafted: 2 skills, 1 hook, 1 policy, 1 eval.', HOLD) },
+        { f: 9, t: 'the chamber', text: 'For the record: no approve verb exists anywhere in this platform. Restricted actions are enumerated, and every act — including refusals — is written to the audit trail.',
+          act: () => chTalk('bench9', 9, 'No approve verb exists. All acts audited.', HOLD) },
+        { f: 10, t: 'the chamber', text: 'Re-examination complete. Fourteen sources across nine claims; one assumption remains, properly labeled as such. No objection stands.',
+          act: () => { H.chal(0); H.stop(0); H.stop(1); chTalk('chv', 10, 'Re-examined. 14 sources. No objection stands.', HOLD); } },
+        { f: 11, t: 'the chamber', text: 'Stop conditions one and two are met: claims sourced or downgraded, zero open challenges. Round 3 — synthesize. The chair yields to the despatch box.',
+          act: () => { H.round(3); chTalk('chj', 11, 'Stop conditions met → ROUND 3. Synthesize.', HOLD); } },
+        { f: 12, t: 'Dana', text: 'One page. Three risky assumptions, clearly marked. Twenty-eight questions for six witnesses. Confidence: seventy-five — capped by construction until a human validates it.',
+          act: () => { H.conf(75); H.stop(2); chTalk('chs', 12, 'One page. Confidence 75 — capped by law.', HOLD); } },
+        { f: 11, t: 'Dana', text: 'The House rises. The study is delivered as a DRAFT to the Domain Owner. Nothing spoken here is truth yet — that power belongs to humans.',
+          act: () => chTalk('chj', 11, 'The House rises. Delivered as DRAFT to Dana.', HOLD) },
+      ];
+      playFeed(document.getElementById('chamber-feed'), LINES, () => {
+        document.getElementById('chamber-actions').innerHTML =
+          `<button class="btn" id="to-review">The study is on Dana's desk — review it →</button>`;
+        document.getElementById('to-review').onclick = () => { count(); go(2, 'Owner Review'); };
+      }, 3250, (L) => L.act && L.act());
+    },
+
+    /* -------- Stage 2: owner reviews & signs -------- */
+    function () {
+      setWho(DANA, 'Dana · Domain Owner');
+      host.innerHTML = `
+        <section class="stage">
+          <div class="mascot">${AGENTS[12].svg}</div>
+          <p class="eyebrow">Step 3 · back to the human <span class="ai-tag">✦ AI draft, human decision</span></p>
+          <h2>Dana reviews the study, approves the people, signs one mandate</h2>
+          <p class="lede">The chamber delivered a draft. Now the platform stops and waits — <b>only a human can turn a draft into a plan.</b></p>
+          <div class="box"><h4>Pre-study draft — Change Management <span class="ai-tag">confidence 75 · capped</span></h4>
+            <p><b>Top risk:</b> rollback readiness — an un-owned Excel checklist outside every governed system.<br>
+            <b>3 assumptions</b> clearly marked (incl. “CAB reviews 100%”, downgraded by the Verifier).<br>
+            <b>28 questions</b> drafted for 6 witnesses.</p></div>
+          <div class="table-wrap"><table>
+            <tr><th></th><th></th><th>Person</th><th>Role</th></tr>
+            ${HUMANS.map((h, i) => `<tr><td><input type="checkbox" checked id="p${i}"></td><td>${h.svg}</td><td><b>${h.n}</b></td><td>${h.r}<span class="why">Why: traced to the chamber's findings by Stakeholder Mapping</span></td></tr>`).join('')}
+          </table></div>
+          <div class="box" style="margin-top:16px"><h4>The interview mandate</h4>
+            <p>“The AI may schedule and conduct discovery interviews with the approved stakeholders. It may not confirm truth, approve anything, or touch any external system. Dana may revoke this at any time.”</p></div>
+          <div class="actions"><button class="btn" id="sign">Approve <span id="pc">6</span> people &amp; sign the mandate ✍</button></div>
+        </section>`;
+      const upd = () => { document.getElementById('pc').textContent = HUMANS.filter((_, i) => document.getElementById('p' + i).checked).length; };
+      HUMANS.forEach((_, i) => { document.getElementById('p' + i).onchange = () => { count(); upd(); }; });
+      document.getElementById('sign').onclick = () => { count(); go(3, 'Discovery'); };
+    },
+
+    /* -------- Stage 3: the meetings — stakeholders talk to the AI -------- */
+    function () {
+      setWho(HUMANS[5].svg, 'Mariam · Checklist Keeper (in session)');
+      host.innerHTML = `
+        <section class="stage">
+          <div class="mascot">${INTERVIEWER}</div>
+          <p class="eyebrow">Step 4 · the meetings <span class="ai-tag">✦ new role on stage: the stakeholders</span></p>
+          <h2>The AI runs the interviews — six people, one conversation at a time</h2>
+          <p class="lede">The Questioning Agent asks, listens and adapts; the Answer Intelligence Agent scores every reply before it counts. Dana isn't in the room — the mandate is.</p>
+          <div class="theater">
+            <div class="chat">
+              <div class="chat-head">${INTERVIEWER} Discovery session · <span id="chat-with">Mariam (Checklist Keeper)</span><span class="live"><i></i> LIVE</span></div>
+              <div class="msgs" id="msgs"></div>
+            </div>
+            <div class="side">
+              <div class="box" style="margin:0"><h4>Session progress</h4><div id="prog"></div></div>
+              <div class="box" style="margin:0"><h4>Raised so far</h4><div id="raised" style="display:flex;flex-wrap:wrap;gap:6px"></div></div>
+            </div>
+          </div>
+          <div class="actions" id="meet-actions"></div>
+        </section>`;
+
+      const msgs = document.getElementById('msgs');
+      const prog = document.getElementById('prog');
+      const raised = document.getElementById('raised');
+      const order = [5, 2, 3, 0, 1, 4]; // Mariam, Omar, Layla, Khalid, Fatima, Yusuf
+      prog.innerHTML = order.map((hi) => `
+        <div class="progress-row">${HUMANS[hi].svg}<span>${HUMANS[hi].n}</span><div class="bar"><i id="bar${hi}" style="width:0%"></i></div><span class="pct" id="pct${hi}">0%</span></div>`).join('');
+      const setBar = (hi, v) => { const b = document.getElementById('bar' + hi); const p = document.getElementById('pct' + hi); if (b) b.style.width = v + '%'; if (p) p.textContent = v + '%'; };
+      const chip = (label, cls) => raised.insertAdjacentHTML('beforeend', `<span class="spill ${cls}">${label}</span>`);
+
+      const SCRIPT = [
+        () => addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Mariam, who currently owns the rollback checklist used during a failed change?'),
+        () => { addMsg(msgs, 'right', 'Mariam · Checklist Keeper', null, HUMANS[5].svg, 'Honestly? Nobody owns it. I update the spreadsheet when I remember. BMC has an older copy from 2024.'); setBar(5, 40); },
+        () => addMsg(msgs, 'left', 'Answer Intelligence Agent', '#6d28d9', ANSWER_AI, 'Scored: completeness 41%, confidence LOW. Two candidates raised — an ownership gap and a version conflict.'),
+        () => { addSys(msgs, 'warn', ANSWER_AI, 'GAP-07 opened · no formal owner for the rollback checklist · severity HIGH'); chip('GAP-07 · ownership', 'warn'); },
+        () => { addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Understood — and noted. Is the spreadsheet the copy BMC pulls during a rollback, or a separate one?'); },
+        () => { addMsg(msgs, 'right', 'Mariam · Checklist Keeper', null, HUMANS[5].svg, 'Separate. Mine is the real one; BMC never gets updated.'); setBar(5, 100); },
+        () => { addSys(msgs, 'evid', ANSWER_AI, 'Evidence request EV-11 sent to Yusuf · which checklist version is live in BMC?'); chip('EV-11 · BMC version', 'grey'); setWho(HUMANS[2].svg, 'Omar · Service Owner (in session)'); document.getElementById('chat-with').textContent = 'Omar & Layla (Service Owners)'; },
+        () => { addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Omar — what is the rollback SLA for a failed billing change?'); },
+        () => { addMsg(msgs, 'right', 'Omar · SO Billing', null, HUMANS[2].svg, 'Four hours. Always has been.'); setBar(2, 100); },
+        () => { addMsg(msgs, 'right', 'Layla · SO Network', null, HUMANS[3].svg, 'It’s six hours. Four was the old framework agreement.'); setBar(3, 100); setWho(HUMANS[3].svg, 'Layla · Service Owner (in session)'); },
+        () => { addSys(msgs, 'bad', ANSWER_AI, 'CONFLICT-03 opened · two service owners disagree on the same SLA · stays visible until humans resolve it'); chip('CONFLICT-03 · SLA', 'bad'); },
+        () => { addMsg(msgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Thank you both — recorded as an open conflict, not silently averaged. Khalid, Fatima and Yusuf are booked next.'); setBar(0, 100); setBar(1, 100); setBar(4, 100); },
+        () => addSys(msgs, '', ANSWER_AI, 'Discovery closed · 28/28 questions · every answer traced to its witness'),
+      ];
+      let t = 600;
+      SCRIPT.forEach((fn) => { later(fn, t); t += 2450; });
+      later(() => {
+        document.getElementById('meet-actions').innerHTML =
+          `<button class="btn" id="to-gov">2 findings need humans — hand over to Governance →</button>`;
+        document.getElementById('to-gov').onclick = () => { count(); go(4, 'Governance'); };
+      }, t + 300);
+    },
+
+    /* -------- Stage 4: governance role -------- */
+    function () {
+      setWho(NOURA, 'Noura · Governance Officer');
+      host.innerHTML = `
+        <section class="stage">
+          <div class="mascot">${GOV_AI}</div>
+          <p class="eyebrow">Step 5 · a new human takes the stage <span class="ai-tag">✦ Governance has no approve verb</span></p>
+          <h2>Noura reviews readiness — she can demand, flag and return. Never approve AI output as truth.</h2>
+          <p class="lede">The Governance Assistant briefs her honestly — including what's still broken. Her powers are deliberately small: comment, request evidence, send back. That's the safety model.</p>
+          <div class="explain"><span class="exi">?</span><span class="exb"><b>What's happening on this screen</b>
+            <p>The agents finished investigating, and the stakeholders answered their questions — but AI findings are never treated as fact on their own. Someone independent has to check whether the evidence is actually strong enough before anything moves forward. That's Governance. Notice there is no "Approve" button anywhere — Noura can only <b>demand more evidence</b>, <b>flag a blocker</b>, or <b>send the work back</b>. If she does nothing, nothing advances. That refusal-by-default is the safety mechanism, not a missing feature.</p></span></div>
+          <div class="verdict"><div class="vicon">!</div>
+            <div><b>Not ready — 1 unresolved conflict, 1 open high-severity gap</b>
+            <p>Readiness improves when the SLA conflict resolves and checklist ownership is confirmed. The platform will not hide either.</p></div></div>
+          <div class="grid2">
+            <div class="box" style="margin:0"><h4>Hard gates</h4>
+              <div class="gatecheck"><span class="gi" style="background:var(--good)">✓</span> Every requirement has a source trace</div>
+              <div class="gatecheck"><span class="gi" style="background:var(--bad)">✕</span> Zero unresolved critical conflicts</div>
+              <div class="gatecheck"><span class="gi" style="background:var(--warn)">!</span> No high-severity gaps open</div>
+              <div class="gatecheck"><span class="gi" style="background:var(--good)">✓</span> Owner assigned to every candidate</div>
+            </div>
+            <div class="box" style="margin:0"><h4>Sign-off board — humans only</h4>
+              <div class="signrow"><span>${DANA} Dana · Domain Owner</span><span class="spill warn">REVIEWING</span></div>
+              <div class="signrow"><span>${HUMANS[0].svg} Khalid · CAB Chair</span><span class="spill ok">SIGNED</span></div>
+              <div class="signrow"><span>${HUMANS[4].svg} Yusuf · BMC Admin</span><span class="spill grey">PENDING EV-11</span></div>
+              <div class="signrow"><span>${HUMANS[2].svg}${HUMANS[3].svg} Omar + Layla · CONFLICT-03</span><span class="spill bad">MUST RESOLVE</span></div>
+            </div>
+          </div>
+          <div class="feed" id="gov-feed" style="margin-top:14px"></div>
+          <div class="actions" id="gov-actions"></div>
+        </section>`;
+      const feed = document.getElementById('gov-feed');
+      playFeed(feed, [
+        { f: 9, t: 'Noura', text: 'Briefing: the package is honest — 11 draft artifacts, 2 open findings. My recommendation: demand evidence EV-11 before any sign-off advances.' },
+        { f: 9, t: 'Noura', text: 'Available actions: add comment · mark needs-evidence · mark blocked · send back to discovery. There is no approve button — by design, not by omission.' },
+      ], () => {
+        const act = document.getElementById('gov-actions');
+        act.innerHTML = `
+          <button class="btn ghost small" id="g1">💬 Comment: “resolve SLA before CAB”</button>
+          <button class="btn ghost small" id="g2">📎 Demand evidence EV-11</button>
+          <button class="btn" id="to-admin">Hand over to Admin &amp; Audit →</button>`;
+        document.getElementById('g1').onclick = (e) => { count(); e.target.textContent = '💬 Comment recorded ✓'; e.target.disabled = true; };
+        document.getElementById('g2').onclick = (e) => { count(); e.target.textContent = '📎 Evidence demanded ✓'; e.target.disabled = true; };
+        document.getElementById('to-admin').onclick = () => { count(); go(5, 'Admin & Audit'); };
+      }, 2600);
+    },
+
+    /* -------- Stage 5: admin & audit role -------- */
+    function () {
+      setWho(SALEM, 'Salem · Platform Admin');
+      host.innerHTML = `
+        <section class="stage">
+          <div class="mascot">${AGENTS[9].svg}</div>
+          <p class="eyebrow">Step 6 · the quiet role that makes it safe <span class="ai-tag">✦ RBAC + audit under everything</span></p>
+          <h2>Salem doesn't touch the knowledge — he guards who can</h2>
+          <p class="lede">Every click you've watched — human or agent — was permission-checked and logged. Including the one the platform <b>refused</b>.</p>
+          <div class="explain"><span class="exi">?</span><span class="exb"><b>What's happening on this screen</b>
+            <p>This is the layer running quietly underneath every other screen you've seen. <b>RBAC</b> (Role-Based Access Control) decides who is allowed to do what — a Governance Officer can comment but can't sign a mandate, an agent can draft a policy but can never touch BMC. And every single action on this platform — human or AI, granted or refused — is written to a permanent <b>audit trail</b> that nobody can edit afterward. This is how the organization can later prove exactly what happened, when, and by whom.</p></span></div>
+          <div class="grid2">
+            <div class="box" style="margin:0"><h4>Roles &amp; powers</h4>
+              <div class="signrow"><span>${DANA} Domain Owner</span><span style="font-size:12px;color:var(--text-3)">full workspace · signs mandates</span></div>
+              <div class="signrow"><span>${HUMANS[0].svg} CAB Chair</span><span style="font-size:12px;color:var(--text-3)">review + sign-off only</span></div>
+              <div class="signrow"><span>${NOURA} Governance</span><span style="font-size:12px;color:var(--text-3)">comment · flag · return — no approve</span></div>
+              <div class="signrow"><span>${SALEM} Admin</span><span style="font-size:12px;color:var(--text-3)">RBAC + audit · no content edits</span></div>
+              <div class="signrow"><span>${AGENTS[11].svg} All 13 agents</span><span style="font-size:12px;color:var(--text-3)">draft only · nothing external</span></div>
+            </div>
+            <div class="box" style="margin:0"><h4>Audit trail — live</h4><div id="audit"></div></div>
+          </div>
+          <div class="actions" id="admin-actions"></div>
+        </section>`;
+      const audit = document.getElementById('audit');
+      const LOGS = [
+        ['14:02', 'CREATE', 'var(--good)', 'Dana activated domain CHANGE-MGMT · trace #a8f1'],
+        ['14:03', 'RUN', 'var(--accent-strong)', 'Pre-study loop DM-0417 · 3 rounds · 1 challenge resolved'],
+        ['14:19', 'SIGN', 'var(--good)', 'Mandate signed by Dana · revocable · trace #a903'],
+        ['14:31', 'DENY', 'var(--bad)', 'Agent write to BMC blocked — PROHIBITED_ACTION · logged'],
+        ['14:38', 'CREATE', 'var(--warn)', 'GAP-07 + CONFLICT-03 opened · visible until resolved'],
+        ['14:44', 'COMMENT', 'var(--accent-strong)', 'Noura: “resolve SLA before CAB” · trace #a91c'],
+      ];
+      LOGS.forEach((l, i) => later(() => {
+        audit.insertAdjacentHTML('beforeend',
+          `<div class="logline"><span class="lt">${l[0]}</span><span class="la" style="color:${l[2]}">${l[1]}</span><span class="ld">${l[3]}</span></div>`);
+      }, 700 * i + 400));
+      later(() => {
+        document.getElementById('admin-actions').innerHTML =
+          `<button class="btn" id="to-files">Everything is logged — collect the deliverables →</button>`;
+        document.getElementById('to-files').onclick = () => { count(); go(6, 'Deliverables'); };
+      }, 700 * LOGS.length + 600);
+    },
+
+    /* -------- Stage 6: the deliverables — an explorable, openable file browser -------- */
+    function () {
+      setWho(DANA, 'Dana · Domain Owner');
+      const FILES = [
+        { icon: '📄', kind: 'text/markdown', name: 'pre-study/change-management-study.md',
+          body: '# Pre-Study — Change Management\n\n**Status:** DRAFT · confidence 75 (capped by construction)\n**Produced by:** the 13-agent debate chamber, mandate DM-0417\n\n## Top risk\nRollback readiness — the checklist used during a live rollback is an\nExcel file with no owner of record.\n\n## Assumptions (3, clearly marked)\n1. ~~CAB reviews 100% of normal changes~~ — CHALLENGED by the Verifier,\n   downgraded to assumption (single source, no exhibit).\n2. Night-shift adherence to written policy is assumed, not verified.\n3. BMC is assumed to hold the current checklist version (it does not).\n\n## Sources\n14 cited across 9 claims. 1 assumption remains, properly labeled.\n\n## Next step\nHand to the Domain Owner for review — this is a draft, not a finding.' },
+        { icon: '🗺', kind: 'application/json', name: 'discovery/stakeholder-map.json',
+          body: '{\n  "domain": "change-management",\n  "stakeholders": 6,\n  "priority_witness": "Mariam",\n  "coverage": ["CAB", "NOC", "Billing", "Network", "BMC", "Checklist"],\n  "mapped_by": "Stakeholder Mapping Agent",\n  "provenance": "every entry traced to the pre-study chamber transcript"\n}' },
+        { icon: '🎙', kind: 'text/markdown', name: 'discovery/interview-pack.md',
+          body: '# Interview Pack — 28 questions, 6 witnesses\n\n- Every question generated adaptively by the Questioning Agent\n- Every answer scored by the Answer Intelligence Agent before it counts\n- 2 findings raised directly from these transcripts:\n  - GAP-07 — no formal checklist owner (from Mariam)\n  - CONFLICT-03 — SLA mismatch, 4h vs 6h (Omar vs Layla)\n\nFull transcripts are linked per-question back to the discovery session.' },
+        { icon: '🕸', kind: 'application/json', name: 'knowledge/graph.json',
+          body: '{\n  "nodes": 34,\n  "edges": 41,\n  "conflict_edges": 1,\n  "gap_edges": 1,\n  "traceability": "100%",\n  "note": "GAP-07 and CONFLICT-03 are edges, not hidden fields — both stay visible until a human resolves them"\n}' },
+        { icon: '🧬', kind: 'application/json', name: 'genome/requirements.json',
+          body: 'REQ-014  owner-of-checklist     CANDIDATE  confidence 75\nREQ-015  single-SLA-truth        DRAFT      blocked by CONFLICT-03\nREQ-016  bmc-live-checklist      DRAFT      awaiting evidence EV-11\n\nEvery requirement links back: question → answer → evidence → graph node.' },
+        { icon: '⚡', kind: 'text/markdown', name: 'token-capital/rollback-ownership.skill.md',
+          body: 'skill: validate-checklist-ownership\ntrigger: change scheduled\naction: check the domain genome for a named owner\nstatus: DRAFT — cannot self-activate\nauthor: Harness Engineer (mandate DM-0417)' },
+        { icon: '🪝', kind: 'text/yaml', name: 'token-capital/cab-precheck.hook.yaml',
+          body: 'hook: cab_agenda_precheck\nwhen: change enters the CAB agenda\nshow: open gaps + open conflicts for this domain\nstatus: DRAFT\nwriteback: none — display only' },
+        { icon: '🛡', kind: 'text/yaml', name: 'token-capital/no-prod-writeback.policy.yaml',
+          body: 'policy: production_writeback\nrule: DENY ALWAYS\nscope: [BMC, CMDB, change-records]\nexceptions: none\nenforced_by: platform safety layer, not the agent' },
+        { icon: '🧪', kind: 'application/json', name: 'token-capital/rollback-0200.eval.json',
+          body: '{\n  "scenario": "02:00 emergency change requiring rollback",\n  "expects": ["named owner", "live checklist", "SLA agreed"],\n  "based_on": "the real Ramadan-window incident"\n}' },
+        { icon: '📦', kind: 'text/plain', name: 'governance/evidence-pack.pdf',
+          body: 'READINESS: NOT READY (honest)\n\n1 unresolved conflict — CONFLICT-03 (SLA mismatch)\n1 open high-severity gap — GAP-07 (checklist ownership)\n\nSign-off board:\n  Khalid · CAB Chair .......... SIGNED\n  Yusuf  · BMC Admin ........... PENDING (EV-11)\n  Dana   · Domain Owner ........ REVIEWING\n\nThis pack ships exactly as generated — nothing is smoothed over.' },
+        { icon: '🧾', kind: 'text/plain', name: 'audit/trail.log',
+          body: '1,204 events logged · 0 gaps in the trail\n\nincludes:\n  14:31  DENY    agent write to BMC blocked — PROHIBITED_ACTION\n  14:38  CREATE  GAP-07 + CONFLICT-03 opened\n  14:44  COMMENT Noura: "resolve SLA before CAB"\n\nEvery entry — human or agent, granted or refused — carries a trace id.' },
+      ];
+      let activeFile = 0;
+      const kindLabel = { 'text/markdown': 'Markdown', 'application/json': 'JSON', 'text/yaml': 'YAML', 'text/plain': 'Text' };
+
+      host.innerHTML = `
+        <section class="stage">
+          <div class="mascot">${AGENTS[8].svg}</div>
+          <p class="eyebrow">Step 7 · the deliverables <span class="ai-tag">✦ files you can open</span></p>
+          <h2>The journey ends in files — eleven artifacts, every one a DRAFT</h2>
+          <p class="lede">Written by the agents, stamped DRAFT, waiting for human hands. <b>Click any file on the left to read it</b> — or open it on its own with the button above the preview.</p>
+          <div class="filewrap">
+            <div class="filelist" id="filelist">
+              ${FILES.map((f, i) => `
+                <button class="fitem" id="fitem${i}" data-i="${i}">
+                  <span class="fic">${f.icon}</span><span class="fnm">${f.name}</span><span class="fdot" id="fdot${i}"></span>
+                </button>`).join('')}
+            </div>
+            <div class="filepreview">
+              <div class="pv-head">
+                <span class="fic" id="pv-icon">${FILES[0].icon}</span>
+                <span class="pvn" id="pv-name">${FILES[0].name}</span>
+                <button class="btn ghost small" id="pv-open">Open in new tab ↗</button>
+                <span class="draft">DRAFT</span>
+              </div>
+              <div class="pv-body" id="pv-body"></div>
+              <div class="pv-foot"><span id="pv-kind"></span><span>Nothing here is written to production — it's a draft waiting for a human.</span></div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><b>11</b><span>deliverables</span></div>
+            <div class="stat"><b>13</b><span>agents drafted them</span></div>
+            <div class="stat"><b>4</b><span>humans decide</span></div>
+            <div class="stat"><b>0</b><span>self-approved</span></div>
+          </div>
+          <div class="actions" id="file-actions"></div>
+        </section>`;
+
+      function openInNewTab(f, btn) {
+        const blob = new Blob([f.body], { type: f.kind + ';charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        let w = null;
+        try { w = window.open(url, '_blank'); } catch (e) { w = null; }
+        const original = btn.textContent;
+        btn.textContent = w ? 'Opened ✓' : 'Blocked here — see preview ←';
+        later(() => { btn.textContent = original; }, 2200);
+      }
+      function selectFile(i, typewriter) {
+        activeFile = i;
+        const f = FILES[i];
+        document.querySelectorAll('.fitem').forEach((el) => el.classList.toggle('active', +el.dataset.i === i));
+        document.getElementById('fitem' + i).classList.add('seen');
+        document.getElementById('pv-icon').textContent = f.icon;
+        document.getElementById('pv-name').textContent = f.name;
+        document.getElementById('pv-kind').textContent = kindLabel[f.kind] || 'Text';
+        document.getElementById('pv-open').onclick = (e) => { count(); openInNewTab(f, e.currentTarget); };
+        const body = document.getElementById('pv-body');
+        if (!typewriter) { body.textContent = f.body; return; }
+        let k = 0;
+        (function typeStep() {
+          k += 6;
+          body.innerHTML = f.body.slice(0, k).replace(/</g, '&lt;') + '<span class="cur"></span>';
+          if (k < f.body.length) timers.push(setTimeout(typeStep, 5));
+          else body.textContent = f.body;
+        })();
+      }
+      document.querySelectorAll('.fitem').forEach((el) => {
+        el.onclick = () => { count(); selectFile(+el.dataset.i, false); };
+      });
+      selectFile(0, true);
+
+      later(() => {
+        document.getElementById('file-actions').innerHTML =
+          `<button class="btn good" id="close-j">Close the journey 🎉</button>`;
+        document.getElementById('close-j').onclick = () => { count(); showFinal(); };
+      }, 1800);
+
+      function showFinal() {
+        cleanup();
+        host.innerHTML = `
+          <section class="stage final">
+            <h2>One journey. Four humans. Thirteen agents. Zero self-approvals.</h2>
+            <p>Dana chose and signed · the chamber investigated under the Loop Engineer's law · the stakeholders spoke · Noura demanded evidence · Salem logged everything — and the platform handed back <b>files, not opinions</b>.</p>
+            <div class="botrow">
+              ${AGENTS.map((a) => `<span class="fbot">${a.svg}<span class="fname">${a.n}</span></span>`).join('')}
+            </div>
+            <p class="footnote">Every message you watched carried its author's name. Every artifact is a draft until a human says otherwise — the approve button doesn't exist, and that's the product.</p>
+            <div class="actions" style="justify-content:center"><button class="btn ghost" id="again">⟲ Watch it again</button></div>
+          </section>`;
+        document.getElementById('again').onclick = () => { clicks = 0; go(0, 'Getting started'); };
+      }
+    },
+  ];
+
+  drawRail();
+  STAGES[0]();
+})();
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEWA Agentic Knowledge OS — Demos</title>
+<style>
+  :root {
+    --bg: #f5f4fc; --surface: #ffffff; --border: #e4e1f2; --text: #1f1d33; --text-2: #5a5678;
+    --accent: #7c3aed; --accent-2: #22d3ee; --accent-soft: #ede9fd; --accent-strong: #6d28d9;
+    --shadow: 0 14px 40px rgba(70, 45, 160, 0.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #14121e; --surface: #1e1b2d; --border: #37324c; --text: #edeaf7; --text-2: #b4aecf;
+      --accent: #a78bfa; --accent-soft: #322a4d; --accent-strong: #c4b0fc; --shadow: 0 14px 40px rgba(0,0,0,0.45); }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: var(--bg); color: var(--text); font: 16px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 24px; }
+  main { max-width: 560px; width: 100%; }
+  .eyebrow { font-size: 12.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
+  h1 { font-size: 26px; margin: 8px 0 6px; letter-spacing: -0.02em; }
+  p.lede { color: var(--text-2); margin: 0 0 26px; }
+  a.card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 18px 20px; margin-bottom: 14px; text-decoration: none; color: var(--text); box-shadow: var(--shadow);
+    transition: transform 0.15s ease; }
+  a.card:hover { transform: translateY(-2px); }
+  a.card b { display: block; font-size: 16px; margin-bottom: 4px; }
+  a.card span { color: var(--text-2); font-size: 13.5px; }
+  a.card .tag { display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
+    background: var(--accent-soft); color: var(--accent-strong); padding: 2px 10px; border-radius: 99px; }
+  footer { margin-top: 20px; font-size: 12px; color: var(--text-2); }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">DEWA Agentic Knowledge OS</div>
+  <h1>The full journey — one domain, thirteen agents, four humans</h1>
+  <p class="lede">Demo — dummy data, simulated AI. Pick the version that fits how you're viewing this.</p>
+  <a class="card" href="coo-full-journey-demo.html">
+    <b>🖥 Desktop journey</b>
+    <span>Full-screen debate chamber, live loop-harness panel, explorable deliverable files.</span>
+    <div class="tag">BEST ON A LAPTOP</div>
+  </a>
+  <a class="card" href="coo-full-journey-demo-mobile.html">
+    <b>📱 Mobile journey</b>
+    <span>Native app shell — swipeable stages, bottom-sheet file viewer, built for a phone.</span>
+    <div class="tag">BEST ON A PHONE</div>
+  </a>
+  <footer>Nothing on this page touches production systems.</footer>
+</main>
+</body>
+</html>
