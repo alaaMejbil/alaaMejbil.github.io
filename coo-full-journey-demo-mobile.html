@@ -1,4 +1,4 @@
-<title>DEWA Agentic Knowledge OS — All Roles, One Journey (Mobile)</title>
+<title>Operation Agentic — DEWA Agentic Knowledge OS (Mobile)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <style>
   :root {
@@ -319,7 +319,7 @@
 </style>
 
 <div class="app" id="app">
-  <div class="banner"><span class="bpulse"></span> Demo — dummy data · simulated AI</div>
+  <div class="banner"><span class="bpulse"></span> Operation Agentic · demo — dummy data · simulated AI</div>
   <div class="topbar">
     <button class="iconbtn" id="backBtn">‹</button>
     <div class="dots" id="dots"></div>
@@ -398,19 +398,19 @@
   }
 
   const AGENTS = [
-    { n: 'Domain Research',      w: 1, c: '#7c3aed', cl: '#c4b0fc', e: '#7df9ff', v: 0 },
-    { n: 'ITIL Best Practice',   w: 1, c: '#0284c7', cl: '#7dd3fc', e: '#e0f2fe', v: 1 },
-    { n: 'DEWA Context',         w: 1, c: '#059669', cl: '#6ee7b7', e: '#d1fae5', v: 0 },
-    { n: 'Systems Hypothesis',   w: 1, c: '#d97706', cl: '#fcd34d', e: '#7df9ff', v: 1 },
-    { n: 'Stakeholder Mapping',  w: 1, c: '#0891b2', cl: '#67e8f9', e: '#ecfeff', v: 0 },
-    { n: 'Scenario Builder',     w: 1, c: '#c026d3', cl: '#f0abfc', e: '#7df9ff', v: 1 },
-    { n: 'Risk Thinker',         w: 1, c: '#e11d48', cl: '#fda4af', e: '#ffd166', v: 0 },
-    { n: 'Enterprise Architect', w: 1, c: '#7e22ce', cl: '#d8b4fe', e: '#fef08a', v: 1 },
-    { n: 'Harness Engineer',     w: 1, c: '#ea580c', cl: '#fdba74', e: '#7df9ff', v: 0 },
-    { n: 'Governance',           w: 1, c: '#65a30d', cl: '#bef264', e: '#f7fee7', v: 1 },
-    { n: 'Verifier',             w: 2, c: '#dc2626', cl: '#fca5a5', e: '#fee2e2', v: 2 },
-    { n: 'Loop Engineer',        w: 2, c: '#475569', cl: '#cbd5e1', e: '#7df9ff', v: 1 },
-    { n: 'Executive Synthesis',  w: 3, c: '#ca8a04', cl: '#fde047', e: '#fefce8', v: 2 },
+    { n: 'Domain Research Agent',      w: 1, c: '#7c3aed', cl: '#c4b0fc', e: '#7df9ff', v: 0 },
+    { n: 'ITIL Agent',   w: 1, c: '#0284c7', cl: '#7dd3fc', e: '#e0f2fe', v: 1 },
+    { n: 'DEWA Context Agent',         w: 1, c: '#059669', cl: '#6ee7b7', e: '#d1fae5', v: 0 },
+    { n: 'Systems Agent',   w: 1, c: '#d97706', cl: '#fcd34d', e: '#7df9ff', v: 1 },
+    { n: 'Stakeholder Agent',  w: 1, c: '#0891b2', cl: '#67e8f9', e: '#ecfeff', v: 0 },
+    { n: 'Scenario Agent',     w: 1, c: '#c026d3', cl: '#f0abfc', e: '#7df9ff', v: 1 },
+    { n: 'Risk Agent',         w: 1, c: '#e11d48', cl: '#fda4af', e: '#ffd166', v: 0 },
+    { n: 'Architect Agent', w: 1, c: '#7e22ce', cl: '#d8b4fe', e: '#fef08a', v: 1 },
+    { n: 'Harness Agent',     w: 1, c: '#ea580c', cl: '#fdba74', e: '#7df9ff', v: 0 },
+    { n: 'Governance Agent',           w: 1, c: '#65a30d', cl: '#bef264', e: '#f7fee7', v: 1 },
+    { n: 'Verifier Agent',             w: 2, c: '#dc2626', cl: '#fca5a5', e: '#fee2e2', v: 2 },
+    { n: 'Loop Engineer Agent',        w: 2, c: '#475569', cl: '#cbd5e1', e: '#7df9ff', v: 1 },
+    { n: 'Synthesis Agent',  w: 3, c: '#ca8a04', cl: '#fde047', e: '#fefce8', v: 2 },
   ];
   AGENTS.forEach((a) => { a.svg = robot(a.c, a.cl, a.e, a.v); });
   const INTERVIEWER = robot('#0e7490', '#67e8f9', '#ecfeff', 0);
@@ -577,12 +577,12 @@
   STAGES[0] = function (p) {
     p.innerHTML = `
       <p class="eyebrow">Step 1 · day one — nothing is agentic yet</p>
-      <h1 class="pagehead">Dana opens the platform for the first time and picks one domain</h1>
+      <h1 class="pagehead">The Domain Owner opens the platform for the first time and picks one domain</h1>
       <p class="lede">The platform's job: capture the knowledge in employees' heads and hand it back as skills and hooks the team uses every day.</p>
       <button class="domhero" id="dom-cm"><span class="dtag">PILOT · READY</span><b>Change Management</b><small>ITIL practice · knowledge-heavy</small></button>
       <details class="disclose"><summary><span class="qi">i</span>7 more domains — locked to later phases<span class="chev">⌄</span></summary>
         <div class="disclose-body">Incident, Problem, Release (Phase 2) · Asset, Capacity, Service Requests, Knowledge Management (Phase 3). Change Management is the only pilot live today.</div></details>
-      <div class="card"><h4>Why Change Management first?</h4><p>It is DEWA's most knowledge-heavy practice — approvals, windows, backout plans — and much of that knowledge lives in people's heads, not in documents. Dana wants it captured, validated, and returned to the team as working assets.</p></div>`;
+      <div class="card"><h4>Why Change Management first?</h4><p>It is DEWA's most knowledge-heavy practice — approvals, windows, backout plans — and much of that knowledge lives in people's heads, not in documents. The owner wants it captured, validated, and returned to the team as working assets.</p></div>`;
     setCTA('Select a domain first', false);
     document.getElementById('dom-cm').onclick = () => {
       count();
@@ -597,15 +597,15 @@
   /* -------- 1: debate chamber (spotlight) -------- */
   STAGES[1] = function (p) {
     p.innerHTML = `
-      <span class="who-chip">${DANA} Dana · Domain Owner (watching)</span>
+      <span class="who-chip">${DANA} Domain Owner (watching)</span>
       <p class="eyebrow">Step 2 · the pre-study</p>
       <h1 class="pagehead">Before asking anyone anything, the 13 agents do their homework</h1>
-      <p class="lede">They read the policy, load <b>ITIL best practice</b>, and form hypotheses. The <b>Verifier</b> challenges anything without a source; the <b>Loop Engineer</b> won't close the loop until every claim is sourced or marked as an assumption.</p>
+      <p class="lede">They read the policy, load <b>ITIL best practice</b>, and form hypotheses. The <b>Verifier Agent</b> challenges anything without a source; the <b>Loop Engineer Agent</b> won't close the loop until every claim is sourced or marked as an assumption.</p>
       ${rosterHTML()}
       <div class="ordbanner" id="ordbanner">⚡ ORDER, ORDER!</div>
       <div class="spot" id="spot">
         <span class="spot-av" id="spot-av">${AGENTS[11].svg}</span>
-        <span><span class="spot-role" id="spot-role">Loop Engineer · Speaker</span><span class="spot-name" id="spot-name">Loop Engineer</span>
+        <span><span class="spot-role" id="spot-role">Loop Engineer Agent · Speaker</span><span class="spot-name" id="spot-name">Loop Engineer Agent</span>
           <div class="spot-text" id="spot-text">Calling the House to order…</div></span>
       </div>
       <div class="hbar">
@@ -617,7 +617,7 @@
       <div class="feed" id="chamber-feed"></div>`;
     setCTA('Investigating…', false);
 
-    const ROLE = { 10: 'Verifier · Front bench', 11: 'Loop Engineer · Speaker', 12: 'Executive Synthesis · Despatch box' };
+    const ROLE = { 10: 'Verifier Agent · Front bench', 11: 'Loop Engineer Agent · Speaker', 12: 'Synthesis Agent · Despatch box' };
     const H = {
       round: (r) => { const el = document.getElementById('hRound'); el.textContent = r + '/3'; el.classList.remove('flip'); void el.offsetWidth; el.classList.add('flip'); },
       chal: (n) => { const el = document.getElementById('hChal'); el.textContent = n; el.style.color = n > 0 ? 'var(--bad)' : 'var(--good)'; el.classList.remove('flip'); void el.offsetWidth; el.classList.add('flip'); },
@@ -654,7 +654,7 @@
         act: () => { H.src(9); speak(3, 'Hypothesis: half the knowledge is in people’s heads.', HOLD); } },
       { f: 6, text: 'The risk that justifies this exercise: single-person knowledge. If the one engineer who knows the backout steps is on leave, does a rollback still happen correctly?',
         act: () => { H.src(10); speak(6, 'Top risk: knowledge that lives in one person.', HOLD); } },
-      { f: 10, text: 'Challenge. Domain Research wrote "the CAB meets every Tuesday" — the only source is an intranet page from 2023. One outdated page is not knowledge. Downgrade it and ask the owner.',
+      { f: 10, text: 'Challenge. The Domain Research Agent wrote "the CAB meets every Tuesday" — the only source is an intranet page from 2023. One outdated page is not knowledge. Downgrade it and ask the owner.',
         act: () => { H.chal(1); speak(10, 'Challenge — the only source is a 2023 page.', HOLD); } },
       { f: 11, text: 'Challenge sustained. "CAB meets Tuesday" becomes an assumption and goes on the owner’s question list. The loop does not advance with open challenges — Round 2.',
         act: () => { order(); H.round(2); later(() => speak(11, 'Sustained → it becomes a question for the owner.', HOLD), 380); } },
@@ -685,25 +685,25 @@
   /* -------- 2: the owner interview + approval -------- */
   STAGES[2] = function (p) {
     p.innerHTML = `
-      <span class="who-chip">${DANA} Dana · Domain Owner (being interviewed)</span>
+      <span class="who-chip">${DANA} Domain Owner (being interviewed)</span>
       <p class="eyebrow">Step 3 · the first conversation is with the owner</p>
-      <h1 class="pagehead">The agents interview Dana — process, systems, people</h1>
+      <h1 class="pagehead">The agents interview the Domain Owner — process, systems, people</h1>
       <p class="lede">Before anyone else is contacted, the agents check their homework with the person who owns the domain.</p>
-      <div class="chat"><div class="chat-head">${INTERVIEWER} Owner interview · Dana<span class="live"><i></i>LIVE</span></div>
+      <div class="chat"><div class="chat-head">${INTERVIEWER} Owner interview · the Domain Owner<span class="live"><i></i>LIVE</span></div>
         <div class="msgs" id="omsgs"></div></div>
       <div id="approve-block" style="display:none">
         <div class="card" style="padding:6px 8px;margin-top:10px" id="stlist"></div>
-        <div class="card"><h4>The knowledge-capture mandate</h4><p>"The AI may schedule and conduct knowledge-capture conversations with the approved employees. It may not confirm truth, approve anything, or touch any external system. Dana may revoke this at any time."</p></div>
+        <div class="card"><h4>The knowledge-capture mandate</h4><p>"The AI may schedule and conduct knowledge-capture conversations with the approved employees. It may not confirm truth, approve anything, or touch any external system. The Domain Owner may revoke this at any time."</p></div>
       </div>`;
     setCTA('Interview in progress…', false);
     const omsgs = document.getElementById('omsgs');
     const OSCRIPT = [
-      () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Dana, walk me through what actually happens when a change request arrives today.'),
-      () => addMsg(omsgs, 'right', 'Dana', null, DANA, 'It gets logged in Remedy, assessed for risk and impact, then normal changes wait for the CAB. Implementation happens in an approved window, and NOC verifies afterwards.'),
+      () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Walk me through what actually happens when a change request arrives today.'),
+      () => addMsg(omsgs, 'right', 'Domain Owner', null, DANA, 'It gets logged in Remedy, assessed for risk and impact, then normal changes wait for the CAB. Implementation happens in an approved window, and NOC verifies afterwards.'),
       () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Which systems does the team touch along the way?'),
-      () => addMsg(omsgs, 'right', 'Dana', null, DANA, 'BMC Remedy, the CMDB, and the monitoring stack. That matches your map.'),
+      () => addMsg(omsgs, 'right', 'Domain Owner', null, DANA, 'BMC Remedy, the CMDB, and the monitoring stack. That matches your map.'),
       () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'One marked assumption: a 2023 page says the CAB meets every Tuesday. Still true?'),
-      () => addMsg(omsgs, 'right', 'Dana', null, DANA, 'Twice a week now — Tuesday and Thursday. Good catch, that page is stale.'),
+      () => addMsg(omsgs, 'right', 'Domain Owner', null, DANA, 'Twice a week now — Tuesday and Thursday. Good catch, that page is stale.'),
       () => addSys(omsgs, '', 'Assumption resolved by the owner · briefing updated'),
       () => addMsg(omsgs, 'left', 'Questioning Agent', '#0e7490', INTERVIEWER, 'Last question: we propose six knowledge holders. Review the list below, then sign the mandate.'),
     ];
@@ -787,7 +787,7 @@
         <span class="gate"><span class="gi" style="background:var(--good)">✓</span>Owners assigned</span>
       </div>
       <div class="card" style="padding:6px 8px">
-        <div class="strow"><span>${DANA}</span><span><b>Dana</b><br><small>Domain Owner</small></span><span class="spill warn">REVIEWING</span></div>
+        <div class="strow"><span>${DANA}</span><span><b>Domain Owner</b><br><small>signs mandates</small></span><span class="spill warn">REVIEWING</span></div>
         <div class="strow"><span>${HUMANS[0].svg}</span><span><b>Khalid</b><br><small>writes up the emergency path</small></span><span class="spill grey">PENDING GAP-01</span></div>
         <div class="strow"><span>${HUMANS[2].svg}</span><span><b>Omar + Layla</b><br><small>rollback window</small></span><span class="spill bad">MUST RESOLVE</span></div>
       </div>
@@ -819,7 +819,7 @@
     setCTA('Logging…', false);
     const audit = document.getElementById('audit');
     const LOGS = [
-      ['09:02', 'CREATE', 'var(--good)', 'Dana activated CHANGE-MGMT · #a8f1'],
+      ['09:02', 'CREATE', 'var(--good)', 'Domain Owner activated CHANGE-MGMT · #a8f1'],
       ['09:04', 'RUN', 'var(--accent-strong)', 'Pre-study loop · 3 rounds · 1 challenge'],
       ['09:41', 'SIGN', 'var(--good)', 'Capture mandate signed · revocable · #a903'],
       ['10:18', 'DENY', 'var(--bad)', 'Agent write to BMC Remedy blocked'],
@@ -839,7 +839,7 @@
       { icon: '📘', kind: 'text/markdown', name: 'knowledge/change-management-playbook.md',
         body: '# Change Management Playbook — DRAFT\n\nHow change management actually works at DEWA — captured from\nthe people who do it, not copied from a policy page.\n\nIntake → assessment → CAB (Tue + Thu) → approved window →\nimplementation → 30-minute NOC verification.\n\nIncludes the night emergency path — DRAFT, pending Khalid’s\nwrite-up (GAP-01). Every step links to the person who described it.' },
       { icon: '🗺', kind: 'application/json', name: 'discovery/stakeholder-map.json',
-        body: '{\n  "knowledge_holders": 6,\n  "confirmed_by": "Dana (Domain Owner)",\n  "coverage": ["CAB","NOC","Billing","Network","BMC","Coordination"]\n}' },
+        body: '{\n  "knowledge_holders": 6,\n  "confirmed_by": "the Domain Owner",\n  "coverage": ["CAB","NOC","Billing","Network","BMC","Coordination"]\n}' },
       { icon: '🎙', kind: 'text/markdown', name: 'discovery/interview-notes.md',
         body: '34 statements · each linked to its speaker\n1 stale assumption resolved by the owner (CAB meets Tue + Thu)\nGAP-01 (emergency path) + CONFLICT-01 (rollback window)\nraised in the open — full transcripts linked.' },
       { icon: '🕸', kind: 'application/json', name: 'knowledge/graph.json',
@@ -855,12 +855,12 @@
       { icon: '🧪', kind: 'application/json', name: 'token-capital/night-emergency.eval.json',
         body: '{\n  "scenario": "night-time emergency change with rollback",\n  "based_on": "GAP-01, raised in Khalid’s interview"\n}' },
       { icon: '📦', kind: 'text/plain', name: 'governance/evidence-pack.pdf',
-        body: 'READINESS: NOT READY (honest)\nCONFLICT-01 (rollback window) + GAP-01 (emergency path) open\nSign-off: Dana … · Khalid pending · Omar + Layla must resolve' },
+        body: 'READINESS: NOT READY (honest)\nCONFLICT-01 (rollback window) + GAP-01 (emergency path) open\nSign-off: owner reviewing · Khalid pending · Omar + Layla must resolve' },
       { icon: '🧾', kind: 'text/plain', name: 'audit/trail.log',
         body: '1,204 events · 0 gaps in the trail\nincl. 1 DENIED write attempt (BMC Remedy)\nevery entry carries a trace id' },
     ];
     p.innerHTML = `
-      <span class="who-chip">${DANA} Dana · Domain Owner</span>
+      <span class="who-chip">${DANA} Domain Owner</span>
       <p class="eyebrow">Step 7 · the deliverables</p>
       <h1 class="pagehead">The knowledge returns to the team — eleven files, every one a DRAFT</h1>
       <p class="lede">A playbook plus draft skills &amp; hooks for the employees. Tap any file to read it in full.</p>
@@ -884,7 +884,7 @@
     panel.innerHTML = `
       <div class="final">
         <h1>One journey. Four humans. Thirteen agents. Zero self-approvals.</h1>
-        <p>Dana activated the domain and corrected the agents · the team shared how the work really happens · Noura demanded evidence · Salem logged everything — and the knowledge came back as <b>a playbook, skills and hooks for the employees</b>, every one a draft.</p>
+        <p>The Domain Owner activated the domain and corrected the agents · the team shared how the work really happens · Noura demanded evidence · Salem logged everything — and the knowledge came back as <b>a playbook, skills and hooks for the employees</b>, every one a draft.</p>
         <div class="botgrid">${AGENTS.map((a) => `<span class="fbot">${a.svg}<span class="fname">${a.n}</span></span>`).join('')}</div>
         <p class="footnote">The approve button doesn't exist — that's the product.</p>
       </div>`;
